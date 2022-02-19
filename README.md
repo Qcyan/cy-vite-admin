@@ -7,15 +7,13 @@
 
 ### cz工具配置git提交限制
 ```js
-// 格式：
+// 格式：跟webstorm配置的格式一致
 type(更改的范围): 短描述
 type:短描述
 ```
 
 ### eslint代码规范
-prettierr配置完成，eslint配置（typescript,prettierr,及rules要继续完善），vite未引入
-安装：已安装
-prettier
-eslint
-eslint-plugin-vue
-
+未测试通过。
+prettierr配置完成，eslint已配置，修改webstorm的代碼格式為prettierr(ctrl+shift+L)
+問題：由于webstorm的eslint版本问题，eslint使用报错，无法校验
+已在`package.json`中配置代码提交时校验`eslint`规范，没有在 `pre-commit`中用`npx lint-staged`开启
