@@ -1,16 +1,61 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "esnext", //  目标语言的版本
     "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "module": "esnext",  // 生成代码的模板标准
+    "moduleResolution": "node",  // 模块解析策略，有"node"和"classic"两种类型
+    "strict": true,  // 开启所有严格的类型检查
+    "jsx": "preserve",  // 代码用于的开发环境:'preserve','react-native',or 'react
+    "esModuleInterop": true,  // 通过导入内容创建命名空间
+    "sourceMap": true,  // 生成目标文件的sourceMap文件
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+
+    "importHelpers": true, // 指定是否引入tslib里的复制工具函数默认为false
+    "experimentalDecorators": true, // 用于指定是否启用实验性的装饰器特性
+    "skipLibCheck": true, // 跳过库文件检查
+    "allowSyntheticDefaultImports": true, // 指定允许从没有默认导出的模块中默认导入
+    "noImplicitAny": false, // 不允许隐式的any类型
+    "noImplicitThis": true, // 当this表达式的值为any类型的时候，生成一个错误
+    "baseUrl": ".",  // 解析非相对模块的基地址，默认是当前目录
+
+
+    // 加载的声明文件包
+    "types": [
+      "webpack-env",
+      "vite/client",
+      "node"
+       // "element-plus/global"
+    ],
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types"
+    ],
+    // 用于指定要包含在编译中的库文件
+    "lib": [
+      "esnext",
+      "dom",
+      "es6",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  // 设置模块名到基于baseUrl的路径映射
+  "paths": {
+    "@/*": [
+      "src/*",
+      "./*"
+    ]
+  },
+  // 指定要编译的路径列表
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  // 排除要编译的路径列表
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

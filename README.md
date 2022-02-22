@@ -14,6 +14,12 @@ type:短描述
 
 ### eslint代码规范
 未测试通过。
-prettierr配置完成，eslint已配置，修改webstorm的代碼格式為prettierr(ctrl+shift+L)
+prettierr配置完成，eslint已配置，修改webstorm的代碼格式為prettierr(ctrl+shift+L)。
+
 問題：由于webstorm的eslint版本问题，eslint使用报错，无法校验
-已在`package.json`中配置代码提交时校验`eslint`规范，没有在 `pre-commit`中用`npx lint-staged`开启
+
+已在`package.json`中配置git代码提交时校验`eslint`规范，没有在 `pre-commit`中用`npx lint-staged`开启
+
+### router
+### store
+###  tsconfig
