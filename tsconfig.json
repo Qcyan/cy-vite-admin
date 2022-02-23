@@ -51,7 +51,9 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "types/**/*.ts"
   ],
   // 排除要编译的路径列表
   "exclude": [

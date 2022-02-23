@@ -1,16 +1,13 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-let aa = 'cc阿'
-let bb = [1, 2]
+    import { provide } from 'vue'
 </script>
 
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    6699
-    <span>123</span>
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+<!--    <el-config-provider :locale="zhCn">-->
+        <router-view #="{ Component, route }">
+            <component :is="Component" :key="route.path" />
+        </router-view>
+<!--    </el-config-provider>-->
 </template>
 
 <style>

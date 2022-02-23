@@ -20,6 +20,8 @@ prettierr配置完成，eslint已配置，修改webstorm的代碼格式為pretti
 
 已在`package.json`中配置git代码提交时校验`eslint`规范，没有在 `pre-commit`中用`npx lint-staged`开启
 
-### router
+### router(已安裝完成初步運行)
 ### store
 ###  tsconfig
+### mock
+### vite（gzip）
