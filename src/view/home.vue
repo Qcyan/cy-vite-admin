@@ -1,10 +1,8 @@
 <script setup lang="ts">
-    // This starter template is using Vue 3 <script setup> SFCs
-    // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setu
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setu
 </script>
 
 <template>
-  <div>
-    123456測試
-  </div>
+    <div class="aa">123456測試</div>
 </template>

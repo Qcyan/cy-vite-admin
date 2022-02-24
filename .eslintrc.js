@@ -1,79 +1,47 @@
-// @ts-check
-const { defineConfig } = require('eslint-define-config');
-module.exports = defineConfig({
+module.exports = {
     root: true,
     env: {
-        browser: true,
-        node: true,
-        es6: true,
+        node: true
+    },
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-essential',
+        //避免与 prettier 冲突
+        'plugin:prettier/recommended'
+    ],
+    globals: {
+        defineProps: "readonly",
+        defineEmits: "readonly",
+        defineExpose: "readonly",
+        withDefaults: "readonly",
     },
     parser: 'vue-eslint-parser',
     parserOptions: {
         parser: '@typescript-eslint/parser',
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        jsxPragma: 'React',
-        ecmaFeatures: {
-            jsx: true,
-        },
+        vueFeatures: {
+            //      "filter": true,
+            interpolationAsNonHTML: false,
+            styleCSSVariableInjection: true
+        }
     },
-    extends: [
-        'plugin:vue/vue3-recommended',
-        'plugin:@typescript-eslint/recommended',
-        'prettier',
-        'plugin:prettier/recommended',
-    ],
+    plugins: ['@typescript-eslint'],
+    ignorePatterns: ['types/**.d.ts', 'node_modules/**', '**/dist/**'],
     rules: {
-        'vue/script-setup-uses-vars': 'error',
-        '@typescript-eslint/ban-ts-ignore': 'off',
-        '@typescript-eslint/explicit-function-return-type': 'off',
+        'prettier/prettier':'error',
+        "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+        "no-console": process.env.NODE_ENV === "production" ? "warn" : "off", //禁用 console
+        '@typescript-eslint/no-unused-vars': 'warn', // 禁止出现未使用过的变量
+        '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/no-empty-function': 'off',
-        'vue/custom-event-name-casing': 'off',
-        'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': 'off',
-        '@typescript-eslint/ban-ts-comment': 'off',
-        '@typescript-eslint/ban-types': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/no-unused-vars': [
-            'error',
-            {
-                argsIgnorePattern: '^_',
-                varsIgnorePattern: '^_',
-            },
-        ],
-        'no-unused-vars': [
-            'error',
-            {
-                argsIgnorePattern: '^_',
-                varsIgnorePattern: '^_',
-            },
-        ],
-        'space-before-function-paren': 'off',
+        '@typescript-eslint/consistent-type-imports': 'error',
 
-        'vue/attributes-order': 'off',
-        'vue/one-component-per-file': 'off',
-        'vue/html-closing-bracket-newline': 'off',
-        'vue/max-attributes-per-line': 'off',
-        'vue/multiline-html-element-content-newline': 'off',
-        'vue/singleline-html-element-content-newline': 'off',
-        'vue/attribute-hyphenation': 'off',
-        'vue/require-default-prop': 'off',
-        'vue/require-explicit-emits': 'off',
-        'vue/html-self-closing': [
-            'error',
-            {
-                html: {
-                    void: 'always',
-                    normal: 'never',
-                    component: 'always',
-                },
-                svg: 'always',
-                math: 'always',
-            },
-        ],
-        'vue/multi-word-component-names': 'off',
-    },
-});
+        /**
+         * 这将使命中的变化历史变得更清晰
+         */
+        'comma-dangle': ['warn', 'always-multiline'],
+        'vue/max-attributes-per-line': ['error', { singleline: 5 }], //标签超出5个属性就会换行
+
+    }
+}
