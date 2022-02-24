@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // 进度条样式
 
@@ -22,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
         ]
     },
     {
-        title:      '404',
+        title: '404',
         name: '404',
         path: '/404',
         component: () => import('@/components/404.vue')
