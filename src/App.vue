@@ -1,14 +1,37 @@
-<script setup lang="ts">
+<!--<script setup lang="ts">
 import { provide } from 'vue'
-</script>
+</script>-->
 
 <template>
-    <!--    <el-config-provider :locale="zhCn">-->
-    <router-view #="{ Component, route }">
-        <component :is="Component" :key="route.path" />
-    </router-view>
-    <!--    </el-config-provider>-->
+    <a-config-provider :locale="locale">
+        <router-view #="{ Component, route }">
+            <component :is="Component" :key="route.path" />
+        </router-view>
+    </a-config-provider>
 </template>
+
+<script lang="ts">
+import {
+    defineComponent,
+    ref,
+    computed,
+    onBeforeMount,
+    watch,
+    onBeforeUnmount,
+    nextTick
+} from 'vue'
+
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+export default defineComponent({
+    name: 'App',
+    setup() {
+        const locale = ref(zhCN)
+        return {
+            locale
+        }
+    }
+})
+</script>
 
 <style>
 #app {

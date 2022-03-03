@@ -2,6 +2,9 @@ import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // 进度条样式
+import IndexLayoutRoutes from './indexLayout'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import IndexLayout from '@/layouts/IndexLayout/index.vue'
 
 NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }) // NProgress Configuration
 
@@ -10,15 +13,14 @@ const routes: Array<RouteRecordRaw> = [
     {
         title: 'empty',
         path: '/',
-        component: () => import('@/view/home.vue'),
-        // component: DefaultLayout,
+        component: DefaultLayout,
         children: [
             {
-                title: 'home',
-                path: '/home',
-                component: () => import('@/view/home.vue')
-                // component: IndexLayout,
-                // children: IndexLayoutRoutes
+                title: 'empty',
+                path: '/',
+                redirect: '/home/index',
+                component: IndexLayout,
+                children: IndexLayoutRoutes
             }
         ]
     },
@@ -48,9 +50,9 @@ const router = createRouter({
  */
 export const whitePath = ['/404']
 
-router.beforeEach(() => {
+router.beforeEach(async (to: any, from, next) => {
     NProgress.start()
-    return true
+    next()
 })
 
 router.afterEach(() => {
