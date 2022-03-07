@@ -30,6 +30,7 @@ module.exports = {
         'prettier/prettier':'error',
         "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
         "no-console": process.env.NODE_ENV === "production" ? "warn" : "off", //禁用 console
+         "no-unused-vars": 1, //禁止出现未使用过的变量
         '@typescript-eslint/no-unused-vars': 'warn', // 禁止出现未使用过的变量
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
