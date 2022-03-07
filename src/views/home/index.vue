@@ -1,8 +1,14 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setu
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { useAccountStore } from '@/store2/modules/test'
+
+const routesStore = useAccountStore()
+const tokens = computed(() => routesStore.token)
+console.log(tokens, 'tokenstokens')
 </script>
 
 <template>
-    <div class="aa">home/index</div>
+    <div>首页</div>
 </template>
+
+<style lang="less"></style>

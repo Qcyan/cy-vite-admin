@@ -1,15 +1,21 @@
-import type { RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
-import NProgress from 'nprogress' // progress bar
-import 'nprogress/nprogress.css' // 进度条样式
-import IndexLayoutRoutes from './indexLayout'
-import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import IndexLayout from '@/layouts/indexLayout/index.vue'
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css'; // progress bar style
+NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }); // NProgress Configuration
 
-NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }) // NProgress Configuration
+import { createRouter, createWebHashHistory } from 'vue-router';
+import { RoutesDataItem } from "@/utils/routes";
 
-// @ts-ignore
-const routes: Array<RouteRecordRaw> = [
+import settings from "@/config/settings";
+
+// 路由
+import IndexLayoutRoutes from '@/router/indexLayout';
+
+// 组件
+import IndexLayout from '@/layouts/IndexLayout/index.vue';
+import DefaultLayout from '@/layouts/DefaultLayout.vue';
+
+
+const routes: RoutesDataItem[] = [
     {
         title: 'empty',
         path: '/',
@@ -24,39 +30,25 @@ const routes: Array<RouteRecordRaw> = [
             }
         ]
     },
-    {
-        title: '404',
-        name: '404',
-        path: '/404',
-        component: () => import('@/components/404.vue')
-    },
-    // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
-    {
-        path: '/:pathMatch(.*)',
-        title: 'NotFound',
-        component: () => import('@/components/NotFound.vue')
-    }
+    // ...IndexLayoutRoutes
 ]
-
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
-    scrollBehavior() {
+    scrollBehavior(/* to, from, savedPosition */) {
         return { top: 0 }
-    }
-})
-/**
- * 路由白名单
- */
-export const whitePath = ['/404']
+    },
+    history: createWebHashHistory(),
+    routes: routes,
+});
 
-router.beforeEach(async (to: any, from, next) => {
-    NProgress.start()
-    next()
-})
+router.beforeEach((/* to, from */) => {
+    // start progress bar
+    NProgress.start();
+});
 
 router.afterEach(() => {
-    NProgress.done()
-})
+    // finish progress bar
+    NProgress.done();
+});
 
-export default router
+export default router;
+

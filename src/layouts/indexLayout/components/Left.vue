@@ -1,54 +1,44 @@
 <template>
-    <div id="layout-left" v-if="showBroadside" :class="{ narrow: collapsed }">
-        <div class="layout-left-logo">
+    <div id="indexlayout-left" :class="{ narrow: collapsed }">
+        <!-- 顶部logo -->
+        <div class="indexlayout-left-logo">
             <router-link to="/" class="logo-url">
                 <template v-if="collapsed">
                     <img
-                        :alt="config.sideTitle"
+                        :alt="config.silderTitle"
                         :src="config.systemLogo"
-                        width="35"
-                        :title="config.sideTitle"
-                        class="cv-bd-radius-5"
+                        width="30"
+                        :title="config.silderTitle"
                     />
                 </template>
-                <div v-else class="cv-flex cv-flex-ai-c">
+                <template v-else>
                     <img
-                        :alt="config.sideTitle"
+                        :alt="config.silderTitle"
                         :src="config.systemLogo"
-                        width="35"
-                        :title="config.sideTitle"
-                        class="cv-mg-r-8px cv-bd-radius-5"
+                        width="30"
+                        :title="config.silderTitle"
                     />
-                    <img
-                        :alt="config.sideTitle"
-                        :src="config.systemLogoText"
-                        height="24"
-                        :title="config.sideTitle"
-                    />
-                </div>
+                    <h3 class="logo-title">{{ config.silderTitle }}</h3>
+                </template>
             </router-link>
         </div>
         <!-- 菜单 -->
-        <div class="layout-left-menu">
-            <slider-menu
+        <div class="indexlayout-left-menu">
+            <sider-menu
                 :menuData="menuData"
                 :belongTopMenu="belongTopMenu"
                 :selectedKeys="selectedKeys"
                 :openKeys="openKeys"
-                :collapsed="collapsed"
-            ></slider-menu>
+            ></sider-menu>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 import { RoutesDataItem } from '@/utils/routes'
-import SliderMenu from './SliderMenu.vue'
+import SiderMenu from './SiderMenu.vue'
 import settings, { SettingsType } from '@/config/settings'
-import { useStore } from 'vuex'
-import { globalStateType as GlobalStateType, globalStateType } from '@/store/global'
-import { ThemeSettingType } from '@/store/theme'
 
 export default defineComponent({
     name: 'Left',
@@ -88,38 +78,36 @@ export default defineComponent({
         }
     },
     components: {
-        SliderMenu
+        SiderMenu
     },
 
     setup(ctx, props) {
-        const store = useStore<{ themeSetting: ThemeSettingType }>()
+        console.log(ctx, props)
         const config = ref<SettingsType>(settings)
-        const showBroadside = computed(() => true)
         return {
-            config,
-            showBroadside
+            config
         }
     }
 })
 </script>
 
 <style lang="less" scoped>
-#layout-left {
-    height: 100vh;
+@import '../../../assets/css/global.less';
+#indexlayout-left {
     display: flex;
     flex-direction: column;
     width: @leftSideBarWidth;
+    height: 100vh;
+    background-color: @menu-dark-bg;
     color: #c0c4cc;
     transition-duration: 0.1s;
-
-    .layout-left-logo {
+    .indexlayout-left-logo {
         width: 100%;
         height: @headerHeight;
         line-height: @headerHeight;
         text-align: center;
         vertical-align: middle;
-        background-color: @menu-dark-bg;
-
+        /* background-color: $subMenuBg; */
         .logo-url {
             display: inline-flex;
             width: 100%;
@@ -127,7 +115,6 @@ export default defineComponent({
             overflow: hidden;
             align-items: center;
             justify-content: center;
-
             .logo-title {
                 display: inline-block;
                 margin: 0;
@@ -137,17 +124,15 @@ export default defineComponent({
                 padding-left: 6px;
             }
         }
-
         img {
             vertical-align: middle;
         }
     }
 
-    .layout-left-menu {
+    .indexlayout-left-menu {
         flex: 1;
         overflow: hidden auto;
         height: calc(100vh - 50px);
-
         .left-scrollbar {
             width: 100%;
             height: 100%;
@@ -158,19 +143,6 @@ export default defineComponent({
         width: @menu-collapsed-width;
     }
 
-    ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 3px;
-        box-shadow: inset 0 0 5px hsla(0, 0%, 100%, 0.05);
-    }
-    ::-webkit-scrollbar-track {
-        background: hsla(0, 0%, 100%, 0.15);
-        border-radius: 3px;
-        box-shadow: inset 0 0 5px rgba(37, 37, 37, 0.05);
-    }
+    .scrollbar();
 }
 </style>

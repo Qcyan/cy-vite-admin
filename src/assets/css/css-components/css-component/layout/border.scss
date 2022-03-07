@@ -1,0 +1,88 @@
+// xx-bd-333 (border: 1px solid #333;)
+@mixin border($name, $color) {
+  .#{$prefix-name}bd-#{$name} {
+    border: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-l-#{$name} {
+    border-left: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-r-#{$name} {
+    border-right: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-lr-#{$name} {
+    border-left: 1px solid #{$color};
+    border-right: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-t-#{$name} {
+    border-top: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-b-#{$name} {
+    border-bottom: 1px solid #{$color};
+  }
+
+  .#{$prefix-name}bd-tb-#{$name} {
+    border-top: 1px solid #{$color};
+    border-bottom: 1px solid #{$color};
+  }
+}
+
+@each $name,
+$color in $color-group {
+  @include border($name, $color);
+}
+
+// xx-bd-w-1 (1-10) (border-width:1px)
+@mixin border-weight($val) {
+  .#{$prefix-name}bd-w-#{$val} {
+    border-width: #{$val}px;
+  }
+
+  .#{$prefix-name}bd-w-t-#{$val} {
+    border-top-width: #{$val}px;
+  }
+
+  .#{$prefix-name}bd-w-b-#{$val} {
+    border-bottom-width: #{$val}px;
+  }
+
+  .#{$prefix-name}bd-w-l-#{$val} {
+    border-left-width: #{$val}px;
+  }
+
+  .#{$prefix-name}bd-w-r-#{$val} {
+    border-right-width: #{$val}px;
+  }
+}
+
+@for $val from 1 through 10 {
+  @include border-weight($val);
+}
+
+
+// xx-bd-radius-2 (border-radius:2px)
+@for $val from 2 through 30 {
+  .#{$prefix-name}bd-radius-#{$val} {
+    border-radius: #{$val}px !important;
+  }
+}
+
+$border-type-group: ('', ''),
+(-l, -left),
+(-r, -right),
+(-t, -top),
+(-b, -bottom);
+
+
+
+// xx-bd-none (border:none)
+@each $name,
+$type in $border-type-group {
+  .#{$prefix-name}bd#{$name}-none {
+    border#{$type}: none !important;
+  }
+}

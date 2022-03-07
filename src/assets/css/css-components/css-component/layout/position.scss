@@ -1,0 +1,63 @@
+.#{$prefix-name}ps-r {
+  position: relative;
+}
+
+.#{$prefix-name}ps-a {
+  position: absolute;
+}
+
+.#{$prefix-name}ps-f {
+  position: fixed;
+}
+
+.#{$prefix-name}absolute-c {
+  @extend %absolute-c;
+}
+
+.#{$prefix-name}absolute-lr-c {
+  @extend %absolute-lr-c;
+}
+
+.#{$prefix-name}absolute-tb-c {
+  @extend %absolute-tb-c;
+}
+
+//定位全屏
+@mixin fixed-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin absolute-c {
+  @extend %absolute-c;
+}
+
+@mixin absolute-tb-c {
+  @extend %absolute-tb-c;
+}
+
+@mixin absolute-lr-c {
+  @extend %absolute-lr-c;
+}
+
+%absolute-tb-c {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%absolute-lr-c {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%absolute-c {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

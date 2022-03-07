@@ -1,5 +1,5 @@
 <template>
-    <div id="layout">
+    <div id="indexlayout">
         <left
             :collapsed="collapsed"
             :menuData="permissionMenuData"
@@ -9,20 +9,19 @@
             :onOpenChange="onOpenChange"
         ></left>
 
-        <div id="layout-right" :class="{ 'fiexd-header': headFixed }">
+        <div id="indexlayout-right" :class="{ 'fiexd-header': headFixed }">
             <right-top
                 :collapsed="collapsed"
                 :toggleCollapsed="toggleCollapsed"
                 :menuData="permissionMenuData"
                 :belongTopMenu="belongTopMenu"
                 :routeItem="routeItem"
-                :showBroadside="showBroadside"
             ></right-top>
-            <div class="layout-right-main">
-                <router-view />
+
+            <div class="indexlayout-right-main">
+                <router-view></router-view>
             </div>
         </div>
-        <settings v-if="devEnvParams" />
     </div>
 </template>
 
@@ -35,6 +34,7 @@ import {
     ref,
     Ref,
     nextTick,
+    PropType,
     reactive,
     toRefs
 } from 'vue'
@@ -52,15 +52,15 @@ import {
 } from '@/utils/routes'
 import { mergeUnique as ArrayMergeUnique } from '@/utils/array'
 import settings from '@/config/settings'
+import useTitle from '@/composables/useTitle'
 
-import useTitle from '@/hooks/useTitle'
 import IndexLayoutRoutes from '@/router/indexLayout'
+
 import Left from '@/layouts/IndexLayout/components/Left.vue'
-import Settings from '@/layouts/IndexLayout/components/Settings.vue'
 import RightTop from '@/layouts/IndexLayout/components/RightTop.vue'
 
-import { globalStateType as GlobalStateType } from '@/store/global'
-import { ThemeSettingType } from '@/store/theme'
+import { StateType as GlobalStateType } from '@/store/global'
+import { StateType as UserStateType } from "@/store/user";
 
 interface IndexLayoutSetupData {
     collapsed: ComputedRef<boolean>
@@ -71,19 +71,20 @@ interface IndexLayoutSetupData {
     routeItem: ComputedRef<RoutesDataItem>
     onOpenChange: (key: any) => void
     toggleCollapsed: () => void
-    devEnvParams: ComputedRef<boolean>
-    showBroadside: ComputedRef<boolean>
 }
 
 export default defineComponent({
     name: 'IndexLayout',
     components: {
         Left,
-        RightTop,
-        Settings
+        RightTop
     },
     setup(): IndexLayoutSetupData {
-        const store = useStore<{ global: GlobalStateType; themeSetting: ThemeSettingType }>()
+        const store = useStore<{
+            global: GlobalStateType
+            // user: UserStateType;
+        }>()
+        // console.log(store.state,'storestore')
         const config = reactive(settings)
         const route = useRoute()
 
@@ -112,13 +113,8 @@ export default defineComponent({
 
         // 收缩左侧
         // const collapsed = computed<boolean>(() => store.state.global.collapsed)
-        const collapsed = computed<boolean>(() => false)
-        // 是否显示左侧侧边栏
-        // const showBroadside = computed(() => store.getters['themeSetting/getShowBroadside'])
-        const showBroadside = computed(() => true)
+        const collapsed = false
 
-        // 判断环境
-        const devEnvParams = computed<boolean>(() => process.env.NODE_ENV === 'development')
 
         const toggleCollapsed = (): void => {
             store.commit('global/changeLayoutCollapsed', !collapsed.value)
@@ -148,15 +144,13 @@ export default defineComponent({
         useTitle(routeItem)
 
         return {
-            showBroadside,
-            devEnvParams,
+            ...toRefs(config),
             collapsed,
             belongTopMenu,
             permissionMenuData,
             selectedKeys,
             leftOpenKeys,
             routeItem,
-            ...toRefs(config),
             onOpenChange,
             toggleCollapsed
         }
@@ -164,37 +158,33 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
-#layout {
+<style lang="less">
+@import '../../assets/css/variables.less';
+#indexlayout {
     display: flex;
     height: 100vh;
     overflow: hidden;
 }
-
-#layout-right {
+#indexlayout-right {
     position: relative;
     flex: 1;
     overflow: auto;
     background-color: @mainBgColor;
-
     &.fiexd-header {
         display: flex;
         flex-direction: column;
-
-        .layout-right-main {
+        .indexlayout-right-main {
             flex: 1;
-            overflow: hidden auto;
+            overflow: auto;
         }
     }
 }
-
-.layout-content {
+.indexlayout-main-content {
     width: 100%;
     height: 100%;
-    padding: 12px 6px 0;
+    padding: 13px 6px 0;
     position: relative;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
 }
 </style>

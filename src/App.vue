@@ -1,15 +1,9 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
-const locale = ref(zhCN)
-</script>
-
 <template>
-    <a-config-provider :locale="locale">
-        <router-view #="{ Component, route }">
-            <component :is="Component" :key="route.path" />
-        </router-view>
-    </a-config-provider>
+    <router-view></router-view>
 </template>
-
-<style></style>
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+    name: 'App'
+})
+</script>

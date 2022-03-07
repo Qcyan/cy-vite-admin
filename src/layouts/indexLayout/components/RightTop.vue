@@ -1,10 +1,9 @@
 <template>
-    <div id="layout-right-top">
-        <div class="layout-right-top-top">
-            <!-- 左侧菜单收起展开 -->
+    <div id="indexlayout-right-top">
+        <div class="indexlayout-right-top-top">
+            <!-- 收起左侧菜单 -->
             <div
-                v-if="showBroadside"
-                class="layout-flexible"
+                class="indexlayout-flexible"
                 @click="
                     () => {
                         if (toggleCollapsed) {
@@ -13,28 +12,12 @@
                     }
                 "
             >
-                <!--                <MenuUnfoldOutlined v-if="collapsed" style="font-size: 16px" />-->
-                <!--                <MenuFoldOutlined v-else style="font-size: 16px" />-->
-            </div>
-
-            <div v-else class="cv-flex cv-flex-ai-c cv-mg-l-20px cv-mg-r-20px">
-                <img
-                    :alt="settings.sideTitle"
-                    :src="settings.systemLogo"
-                    width="35"
-                    :title="settings.sideTitle"
-                    class="cv-mg-r-8px cv-bd-radius-5"
-                />
-                <img
-                    :alt="settings.sideTitle"
-                    :src="settings.systemLogoText"
-                    height="24"
-                    :title="settings.sideTitle"
-                />
+                <MenuUnfoldOutlined v-if="collapsed" style="font-size: 16px" />
+                <MenuFoldOutlined v-else style="font-size: 16px" />
             </div>
 
             <!-- 顶部菜单 -->
-            <div class="layout-top-menu">
+            <div class="indexlayout-top-menu">
                 <div ref="topMenuCon" :style="{ width: topMenuWidth }">
                     <template v-for="(item, key) in menuData">
                         <a-link
@@ -42,7 +25,7 @@
                             v-if="!item.hidden"
                             :to="item.path"
                             :class="{ active: belongTopMenu === item.path }"
-                            class="layout-top-menu-li"
+                            class="indexlayout-top-menu-li"
                         >
                             {{ item.title }}
                         </a-link>
@@ -50,15 +33,21 @@
                 </div>
             </div>
             <!-- 顶部右侧 -->
-            <div class="layout-top-menu-right">
+            <div class="indexlayout-top-menu-right">
+                <template v-if="isShowMessage">
+                    <!--          <right-top-message />-->
+                </template>
+                <template v-if="isShowSelectLang">
+                    <!--          <select-lang class="indexlayout-top-selectlang" />-->
+                </template>
                 <right-top-user />
             </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, PropType, Ref, toRefs, reactive } from 'vue'
-// import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
+import { defineComponent, onMounted, PropType, ref, Ref, toRefs, reactive } from 'vue'
+import { MenuFoldOutlined, MenuUnfoldOutlined, EnvironmentOutlined } from '@ant-design/icons-vue'
 import { RoutesDataItem } from '@/utils/routes'
 import useTopMenuWidth from '../composables/useTopMenuWidth'
 import settings, { SettingsType } from '@/config/settings'
@@ -66,18 +55,18 @@ import RightTopUser from './RightTopUser.vue'
 import ALink from '@/components/ALink/index.vue'
 
 interface RightTopSetupData {
+    // t: (key: string | number) => string;
     topMenuCon: Ref
     topMenuWidth: Ref
-    settings: SettingsType
 }
 
 export default defineComponent({
     name: 'RightTop',
     components: {
         ALink,
-        RightTopUser
-        // MenuFoldOutlined,
-        // MenuUnfoldOutlined
+        RightTopUser,
+        MenuFoldOutlined,
+        MenuUnfoldOutlined
     },
     props: {
         collapsed: {
@@ -88,11 +77,7 @@ export default defineComponent({
             type: Boolean,
             default: true
         },
-        navEnable: {
-            type: Boolean,
-            default: true
-        },
-        showBroadside: {
+        topNavEnable: {
             type: Boolean,
             default: true
         },
@@ -115,12 +100,11 @@ export default defineComponent({
         }
     },
     setup(props): RightTopSetupData {
-        const { navEnable } = toRefs(props)
-        const config = reactive<SettingsType>(settings)
-        const { topMenuCon, topMenuWidth } = useTopMenuWidth(navEnable)
+        const { topNavEnable } = toRefs(props)
+        const config = reactive(settings)
+        const { topMenuCon, topMenuWidth } = useTopMenuWidth(topNavEnable)
 
         return {
-            settings,
             topMenuCon,
             topMenuWidth,
             ...toRefs(config)
@@ -128,51 +112,52 @@ export default defineComponent({
     }
 })
 </script>
-<style lang="less" scoped>
-#layout-right-top {
+
+<style lang="less">
+@import '../../../assets/css/global.less';
+#indexlayout-right-top {
     width: 100%;
-    height: @headerHeight;
+    height: (@headerHeight);
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     z-index: 9;
-
-    .layout-right-top-top {
+    .indexlayout-right-top-top {
         display: flex;
         width: 100%;
         height: @headerHeight;
         background-color: @menu-dark-bg;
         color: #c0c4cc;
-
-        .layout-flexible {
+        .indexlayout-flexible {
             width: @headerHeight;
             height: @headerHeight;
             line-height: @headerHeight;
             text-align: center;
             cursor: pointer;
-
             &:hover {
                 background-color: @menu-dark-bg;
-                /*color: @menu-dark-highlight-color;*/
+                // color: @menu-dark-highlight-color;
             }
         }
 
-        .layout-top-menu {
+        .indexlayout-top-menu {
             height: @headerHeight;
             line-height: @headerHeight;
             flex: 1;
+            /* display: flex; */
             overflow: hidden;
             overflow-x: auto;
-
-            .layout-top-menu-li {
+            .indexlayout-top-menu-li {
                 display: inline-block;
-                padding: 0 30px;
+                padding: 0 15px;
                 height: @headerHeight;
                 text-decoration: none;
-                color: #ffffff;
+                color: #c0c4cc;
                 font-size: 15px;
-
+                border-bottom: solid 3px transparent;
                 &:hover,
                 &.active {
-                    color: @primary-color;
+                    background-color: @menu-dark-bg;
+                    // color: @menu-dark-highlight-color;
+                    border-bottom-color: @primary-color;
                 }
             }
 
@@ -181,30 +166,26 @@ export default defineComponent({
             }
         }
 
-        .layout-top-menu-right {
-            //width: 150px;
+        .indexlayout-top-menu-right {
+            width: 150px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             padding-right: 10px;
-
-            .layout-top-message {
+            .indexlayout-top-message {
                 height: @headerHeight;
                 line-height: @headerHeight;
                 color: #c0c4cc;
-
-                .layout-top-message-badge {
+                .indexlayout-top-message-badge {
                     margin-left: 5px;
                     margin-top: -20px;
                 }
             }
-
-            .layout-top-usermenu {
+            .indexlayout-top-usermenu {
                 padding-left: 10px;
                 color: #c0c4cc;
             }
-
-            .layout-top-selectlang {
+            .indexlayout-top-selectlang {
                 padding-left: 10px;
             }
         }
@@ -215,34 +196,28 @@ export default defineComponent({
     &.tabNavEnable {
         height: (@headerHeight + @headerBreadcrumbHeight);
     }
-
     &.topNavEnable {
         height: (@headerHeight + @headerTabNavHeight);
-
-        .layout-right-top-top {
+        .indexlayout-right-top-top {
             background-color: #ffffff;
-            /*color: @text-color;*/
-
-            .layout-flexible {
+            color: @text-color;
+            .indexlayout-flexible {
                 &:hover {
                     background-color: @mainBgColor;
-                    /*color: @heading-color;*/
+                    color: @heading-color;
                 }
             }
-
-            .layout-top-menu-right {
-                .layout-top-message {
-                    /*color: @heading-color;*/
+            .indexlayout-top-menu-right {
+                .indexlayout-top-message {
+                    color: @heading-color;
                 }
-
-                .layout-top-usermenu {
-                    /*color: @heading-color;*/
+                .indexlayout-top-usermenu {
+                    color: @heading-color;
                 }
             }
         }
-
         &.tabNavEnable {
-            height: @headerHeight;
+            height: (@headerHeight);
         }
     }
 }

@@ -8,8 +8,8 @@
  * 自定义 svg icon
  * @author LiQingSong
  * 使用说明：
- *   1、下载或制作svg文件，存放到/v3ColorPicker/assets/iconsvg目录下
- *   2、项目根据/v3ColorPicker/assets/iconsvg/svgo.yml配置自动压缩精简svg，也可以独立运行 npm run svgo 压缩精简svg
+ *   1、下载或制作svg文件，存放到/src/assets/iconsvg目录下
+ *   2、项目根据/src/assets/iconsvg/svgo.yml配置自动压缩精简svg，也可以独立运行 npm run svgo 压缩精简svg
  *   3、使用Demo：
  *      import IconSvg from '@/components/IconSvg';
  *      import { defineComponent } from "vue";
@@ -18,7 +18,7 @@
  *              IconSvg
  *          }
  *      })
- *      <IconSvg type="svg文件名" class="" styles=""/>
+ *      <IconSvg type="svg文件名" class="" style=""/>
  */
 import { defineComponent } from "vue";
 export default defineComponent({

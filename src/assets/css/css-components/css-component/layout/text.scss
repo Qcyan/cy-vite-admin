@@ -1,0 +1,75 @@
+// xx-t-c (text-align: center)
+.#{$prefix-name}t-c {
+  text-align: center;
+}
+
+.#{$prefix-name}t-l {
+  text-align: left;
+}
+
+.#{$prefix-name}t-r {
+  text-align: right;
+}
+
+// cc-v-m （vertical-align: middle)
+.#{$prefix-name}v-m {
+  * {
+    vertical-align: middle;
+  }
+}
+
+.#{$prefix-name}v-t {
+  * {
+    vertical-align: top;
+  }
+}
+
+.#{$prefix-name}v-b {
+  * {
+    vertical-align: bottom;
+  }
+}
+
+// xx-t-ellipsis xx-t-ellipsis-2 多行省略
+.#{$prefix-name}t-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+
+  @for $i from 2 through 5 {
+    &.#{$prefix-name}t-ellipsis-#{$i} {
+      -webkit-line-clamp: $i;
+    }
+  }
+}
+
+// xx-t-hide 单行省略
+.#{$prefix-name}t-hide {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+//xx-t-333 颜色
+@each $name,
+$color in $color-group {
+  .#{$prefix-name}t-#{$name} {
+    color: $color;
+  }
+}
+
+/*font-weight*/
+.#{$prefix-name}f-b {
+  font-weight: bold;
+}
+
+// xx-wb-ba 换行
+.#{$prefix-name}wb-ba {
+  word-break: break-all;
+}
+
+.#{$prefix-name}ws-nm {
+  white-space: normal;
+}

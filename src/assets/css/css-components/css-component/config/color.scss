@@ -1,0 +1,30 @@
+//颜色配置信息
+$color-333: #333;
+$color-666: #666;
+$color-999: #999;
+$color-dbd:#DBDBDB;
+$color-c9c: #C9C9C9;
+$color-f5f: #F5F5F5;
+$color-faf: #FAFAFA;
+$color-grey: #CCC;
+$color-org: #EEA63A;
+$color-green: #67C23A;
+$color-red: #F56C6C;
+$color-blue: #45A1FF;
+$color-white: white;
+
+
+// color 颜色组
+$color-group: ('333', $color-333),
+('666', $color-666),
+('999', $color-999),
+('bdb', $color-dbd),
+('c9c', $color-c9c),
+('f5f', $color-f5f),
+('faf', $color-faf),
+('org', $color-org),
+('green', $color-green),
+('red', $color-red),
+('blue', $color-blue),
+('grey', $color-grey),
+('white', $color-white),

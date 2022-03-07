@@ -9,6 +9,7 @@ specifiers:
   '@typescript-eslint/parser': ^4.31.2
   '@vitejs/plugin-vue': ^2.2.0
   '@vitejs/plugin-vue-jsx': ^1.3.3
+  '@vue/cli-plugin-vuex': ~4.5.13
   animate.css: ^4.1.1
   ant-design-vue: ^3.0.0-alpha.13
   autoprefixer: ^9
@@ -24,6 +25,7 @@ specifiers:
   less: ^4.1.2
   less-loader: ^10.2.0
   lint-staged: ^12.3.4
+  localforage: ^1.10.0
   nprogress: ^0.2.0
   pinia: ^2.0.9
   postcss: ^7
@@ -43,6 +45,7 @@ dependencies:
   animate.css: 4.1.1
   ant-design-vue: 3.0.0-beta.12_vue@3.2.31
   axios: 0.21.4
+  localforage: 1.10.0
   nprogress: 0.2.0
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
   vue: registry.npmmirror.com/vue/3.2.31
@@ -58,6 +61,7 @@ devDependencies:
   '@typescript-eslint/parser': 4.33.0_eslint@6.8.0+typescript@4.5.5
   '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/2.2.0_vite@2.8.2+vue@3.2.31
   '@vitejs/plugin-vue-jsx': 1.3.8
+  '@vue/cli-plugin-vuex': 4.5.15
   autoprefixer: registry.npmmirror.com/autoprefixer/9.8.8
   commitizen: registry.npmmirror.com/commitizen/4.2.4
   cz-customizable: registry.npmmirror.com/cz-customizable/6.3.0
@@ -691,6 +695,12 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+    dev: true
+
+  /@vue/cli-plugin-vuex/4.5.15:
+    resolution: {integrity: sha512-fqap+4HN+w+InDxlA3hZTOGE0tzBTgXhKLoDydhywqgmhQ1D9JA6Feh94ze6tG8DsWX58/ujYUqA8jAz17FJtg==}
+    peerDependencies:
+      '@vue/cli-service': ^3.0.0 || ^4.0.0-0
     dev: true
 
   /@vue/devtools-api/6.0.12:
@@ -1873,6 +1883,10 @@ packages:
     dev: true
     optional: true
 
+  /immediate/3.0.6:
+    resolution: {integrity: sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=}
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -2090,6 +2104,12 @@ packages:
       type-check: 0.3.2
     dev: true
 
+  /lie/3.1.1:
+    resolution: {integrity: sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=}
+    dependencies:
+      immediate: 3.0.6
+    dev: false
+
   /lilconfig/2.0.4:
     resolution: {integrity: sha512-bfTIN7lEsiooCocSISTWXkiWJkRqtL9wYtYy+8EK3Y41qh3mpwPU0ycTOgjdY9ErwXCc8QyrQp82bdL0Xkm9yA==}
     engines: {node: '>=10'}
@@ -2139,6 +2159,12 @@ packages:
       through: 2.3.8
       wrap-ansi: 7.0.0
     dev: true
+
+  /localforage/1.10.0:
+    resolution: {integrity: sha512-14/H1aX7hzBBmmh7sGPd+AOMkkIrHM3Z1PAyGgZigA1H1p5O5ANnMyWzvpAETtG68/dC4pC0ncy3+PPGzXZHPg==}
+    dependencies:
+      lie: 3.1.1
+    dev: false
 
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}

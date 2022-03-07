@@ -1,0 +1,123 @@
+$flex-direction: (r, row),
+(rr, row-reverse),
+(c, column),
+(cr, column-reverse);
+$flex-wrap: (w, wrap),
+(nw, nowrap),
+(wr, wrap-reverse);
+$flex-justify: (s, flex-start),
+(e, flex-end),
+(c, center),
+(sb, space-between),
+(sa, space-around);
+$flex-align-item: (s, flex-start),
+(e, flex-end),
+(c, center),
+(b, baseline),
+(sc, stretch);
+$flex-align-content: (s, flex-start),
+(e, flex-end),
+(c, center),
+(sb, space-between),
+(sa, space-around),
+(sc, stretch);
+$align-self: (a, auto),
+(s, flex-start),
+(e, flex-end),
+(c, center),
+(b, baseline),
+(sc, stretch);
+
+// xx-flex-join-c-sb ( display: flex;align-items:center;justify-content:space-between)
+@each $name,
+$align-name in $flex-align-item {
+
+  @each $_name,
+  $justify-name in $flex-justify {
+    .#{$prefix-name}flex-join-#{$name}-#{$_name} {
+      display: flex;
+      align-items:#{$align-name};
+      justify-content:#{$justify-name}
+    }
+  }
+}
+
+
+//xx-flex
+.#{$prefix-name}flex {
+  display: flex;
+}
+
+//xx-flex-1 (flex:1)
+@for $i from 1 through 10 {
+  .#{$prefix-name}flex-#{$i} {
+    flex: #{$i};
+  }
+}
+
+// xx-flex-d-r (flex-direction:row)
+@each $name,
+$direction-name in $flex-direction {
+  .#{$prefix-name}flex-d-#{$name} {
+    flex-direction: #{$direction-name};
+  }
+}
+
+// xx-flex-w-w (flex-wrap:wrap)
+@each $name,
+$wrap-name in $flex-wrap {
+  .#{$prefix-name}flex-w-#{$name} {
+    flex-wrap: #{$wrap-name};
+  }
+}
+
+//xx-flex-f-r-w (flex-flow:row wrap)
+@each $name,
+$direction-name in $flex-direction {
+
+  @each $_name,
+  $wrap-name in $flex-wrap {
+    .#{$prefix-name}flex-f-#{$name}-#{$_name} {
+      flex-flow: #{$direction-name} #{$wrap-name};
+    }
+  }
+}
+
+//xx-flex-jc-sb (justify-content:space-between)
+@each $name,
+$justify-name in $flex-justify {
+  .#{$prefix-name}flex-jc-#{$name} {
+    justify-content: #{$justify-name};
+  }
+}
+
+//xx-flex-ai-c ( align-item:center)
+@each $name,
+$align-name in $flex-align-item {
+  .#{$prefix-name}flex-ai-#{$name} {
+    align-items: #{$align-name};
+  }
+}
+
+//xx-flex-ac-c (align-content:center)
+@each $name,
+$align-name in $flex-align-content {
+  .#{$prefix-name}flex-ac-#{$name} {
+    align-content: #{$align-name};
+  }
+}
+
+//xx-flex-basis-2 (flex-basis:10%)
+@for $i from 1 through 20 {
+  .#{$prefix-name}flex-basis-#{$i * 5} {
+    flex-basis: $i * 5%;
+  }
+}
+
+// xx-flex-as-c (align-self:center)
+@each $name,
+$align-name in $align-self {
+  .#{$prefix-name}flex-as-#{$name} {
+    align-self: #{$align-name};
+  }
+}

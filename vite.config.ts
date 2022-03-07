@@ -1,14 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [vue(),vueJsx()],
-    css:{
+    plugins: [vue(), vueJsx()],
+    css: {
         modules: {
-            localsConvention: 'camelCase', // 默认只支持驼峰，修改为同时支持横线和驼峰
+            localsConvention: 'camelCase' // 默认只支持驼峰，修改为同时支持横线和驼峰
         },
         preprocessorOptions: {
             /*scss: {
@@ -16,10 +16,9 @@ export default defineConfig({
             },*/
             less: {
                 charset: false,
-                additionalData: '@import "./src/assets/styles/global.less";',
-
-            },
-        },
+                additionalData: '@import "./src/assets/css/global.less";'
+            }
+        }
     },
     resolve: {
         alias: {
@@ -35,7 +34,7 @@ export default defineConfig({
             '@store': resolve(__dirname, './src/store'),
             '@assets': resolve(__dirname, './src/assets'),
             // '@state': resolve(__dirname, './src/state'),
-            '@utils': resolve(__dirname, './src/utils'),
+            '@utils': resolve(__dirname, './src/utils')
         }
     },
     // base: './', // 设置打包路径

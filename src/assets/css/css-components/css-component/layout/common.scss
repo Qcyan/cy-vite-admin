@@ -1,0 +1,30 @@
+//v-cloak in vue
+[v-cloak] {
+  display: none;
+}
+
+//box-sizing:border-box
+.#{$prefix-name}bs-bb {
+  @extend %border-box;
+}
+
+%border-box {
+  box-sizing: border-box;
+}
+
+//overflow-hidden
+.#{$prefix-name}overflow-hide {
+  overflow: hidden;
+}
+
+
+// ul
+.#{$prefix-name}reset-ul {
+  @extend %reset-ul;
+}
+
+%reset-ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
