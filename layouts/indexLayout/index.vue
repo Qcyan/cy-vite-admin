@@ -56,7 +56,6 @@ import settings from '@/config/settings'
 import useTitle from '@/hooks/useTitle'
 import IndexLayoutRoutes from '@/router/indexLayout'
 import Left from '@/layouts/IndexLayout/components/Left.vue'
-import Settings from '@/layouts/IndexLayout/components/Settings.vue'
 import RightTop from '@/layouts/IndexLayout/components/RightTop.vue'
 
 import { globalStateType as GlobalStateType } from '@/store/global'
@@ -79,8 +78,7 @@ export default defineComponent({
     name: 'IndexLayout',
     components: {
         Left,
-        RightTop,
-        Settings
+        RightTop
     },
     setup(): IndexLayoutSetupData {
         const store = useStore<{ global: GlobalStateType; themeSetting: ThemeSettingType }>()

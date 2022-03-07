@@ -4,7 +4,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // 进度条样式
 import IndexLayoutRoutes from './indexLayout'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import IndexLayout from '@/layouts/IndexLayout/index.vue'
+import IndexLayout from '@/layouts/indexLayout/index.vue'
 
 NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }) // NProgress Configuration
 

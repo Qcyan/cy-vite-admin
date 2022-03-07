@@ -1,4 +1,3 @@
-<!--
 <template>
     <div class="cv-flex cv-flex-ai-c">
         <a-button class="cv-btn cv-btn-red">续订</a-button>
@@ -117,7 +116,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .select-shop {
     width: 159px;
-    color: @white;
     ::v-deep(.ant-select-selector) {
         background-color: #4c5564 !important;
         border-radius: 5px;
@@ -145,4 +143,3 @@ export default defineComponent({
     }
 }
 </style>
--->

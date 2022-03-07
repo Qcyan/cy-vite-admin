@@ -4,5 +4,5 @@
 </script>
 
 <template>
-    <div class="aa">123456測試</div>
+    <div class="aa">test/other</div>
 </template>

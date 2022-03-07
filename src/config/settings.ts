@@ -1,5 +1,5 @@
-import {RoutesDataItem} from "@/utils/routes";
-import { ConfigEnv, loadEnv, UserConfig } from 'vite';
+import { RoutesDataItem } from '@/utils/routes'
+import { ConfigEnv, loadEnv, UserConfig } from 'vite'
 
 /**
  * 站点配置
@@ -110,7 +110,6 @@ export interface SettingsType {
 // const { VUE_APP_NAME } = loadEnv(mode, CWD);
 
 const settings: SettingsType = {
-
     systemLogo: new URL(`@/assets/images/logo.png`, import.meta.url).href,
     systemLogoText: new URL(`@/assets/images/logo-text.png`, import.meta.url).href,
     // siteTitle: VUE_APP_NAME,
@@ -137,7 +136,8 @@ const settings: SettingsType = {
     iconfontUrl: [],
     proUrl: {
         // 打印组件下载地址
-        component: 'https://api.pinduoduo.com/api/app/v1/latest/xunmeng.merchant.windows.orderprinter/windows',
+        component:
+            'https://api.pinduoduo.com/api/app/v1/latest/xunmeng.merchant.windows.orderprinter/windows',
         // 开通面单
         // surface: 'https://mms.pinduoduo.com/logistics/open',
         surface: 'https://mms.pinduoduo.com/daxue/detail?courseId=1280',
@@ -147,11 +147,11 @@ const settings: SettingsType = {
         // 多店铺授权参数
         authLocalKey: 'AUTH_SHOP_PHONE',
         authParamsKey: 'state',
-        authParamsValue: 'AUTH_SHOP_STATE',
+        authParamsValue: 'AUTH_SHOP_STATE'
     },
     printerList: [
-        {name: '拼多多', wsUrl: 'ws://localhost:5000'},
-        {name: '菜鸟', wsUrl: 'ws://localhost:13528'},
+        { name: '拼多多', wsUrl: 'ws://localhost:5000' },
+        { name: '菜鸟', wsUrl: 'ws://localhost:13528' }
     ],
     systemLayoutList: [
         {
@@ -165,7 +165,17 @@ const settings: SettingsType = {
             name: '顶部导航'
         }
     ],
-    systemColorList: ['#45A1FF', '#f5222d', '#fa541c', '#fadb14', '#3eaf7c', '#13c2c2', '#1890ff', '#722ed1', '#eb2f96']
-};
+    systemColorList: [
+        '#45A1FF',
+        '#f5222d',
+        '#fa541c',
+        '#fadb14',
+        '#3eaf7c',
+        '#13c2c2',
+        '#1890ff',
+        '#722ed1',
+        '#eb2f96'
+    ]
+}
 
-export default settings;
+export default settings

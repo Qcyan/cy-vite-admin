@@ -26,3 +26,6 @@ prettierr配置完成，eslint已配置，為prettierr(ctrl+shift+alt+L)。
 ###  tsconfig
 ### mock
 ### vite（gzip）
+
+注释掉了所有跟store相关与process与require相关的内容，因为vite的原因，得一步步改过来。
+路由层级配置应该问题不大。主要是layout要重新处理
