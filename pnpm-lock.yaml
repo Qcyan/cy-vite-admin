@@ -28,6 +28,7 @@ specifiers:
   localforage: ^1.10.0
   nprogress: ^0.2.0
   pinia: ^2.0.9
+  pinia-plugin-persist: ^0.0.93
   postcss: ^7
   prettier: ^2.5.1
   tailwindcss: npm:@tailwindcss/postcss7-compat@^2.0.2
@@ -48,6 +49,7 @@ dependencies:
   localforage: 1.10.0
   nprogress: 0.2.0
   pinia: 2.0.11_typescript@4.5.5+vue@3.2.31
+  pinia-plugin-persist: 0.0.93_vue@3.2.31
   vue: registry.npmmirror.com/vue/3.2.31
   vue-router: 4.0.12_vue@3.2.31
   vuex: 4.0.2_vue@3.2.31
@@ -2447,6 +2449,19 @@ packages:
     dev: true
     optional: true
 
+  /pinia-plugin-persist/0.0.93_vue@3.2.31:
+    resolution: {integrity: sha512-ARHTYDMFTikIyywVnuJK859q3B8gjW8vy/E722why4ER9Obrdf5bK7H9/lYztJHuPHhfN46oDv0ab7S/2SfccQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.31
+      vue-demi: 0.11.4_vue@3.2.31
+    dev: false
+
   /pinia/2.0.11_typescript@4.5.5+vue@3.2.31:
     resolution: {integrity: sha512-JzcmnMqu28PNWOjDgEDK6fTrIzX8eQZKPPKvu/fpHdpXARUj1xeVdFi3YFIMOWswqaBd589cpmAMdSSTryI9iw==}
     peerDependencies:
@@ -3037,6 +3052,21 @@ packages:
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
+
+  /vue-demi/0.11.4_vue@3.2.31:
+    resolution: {integrity: sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.31
+    dev: false
 
   /vue-demi/0.12.1_vue@3.2.31:
     resolution: {integrity: sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==}

@@ -1,24 +1,8 @@
-/**
- * 面包屑类型
- */
-export interface BreadcrumbType {
-    // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
-    title: string
-    // 路由地址或外链
-    path: string
-}
-/**
- * tab导航存储规则类型
- */
-export type TabNavType = 'path' | 'querypath'
-
-interface Title18n {
-    zh_CN: string
-    en_US: string
-}
+/* 路由声明文件，扩展基础路由对象属性 */
+import { _RouteRecordBase } from 'vue-router';
 
 declare module 'vue-router' {
-    interface RouteMeta extends Record<string | number | symbol, unknown> {
+    interface _RouteRecordBase {
         /** 不在菜单中显示 */
         hideInMenu?: boolean
         /** 标题 */

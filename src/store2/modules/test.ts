@@ -5,3 +5,4 @@ export const useAccountStore = defineStore({
         token: '123456'
     })
 })
+// export default useAccountStore

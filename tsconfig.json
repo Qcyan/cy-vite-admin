@@ -24,7 +24,7 @@
       "webpack-env",
       "vite/client",
       "node"
-       // "element-plus/global"
+//        "element-plus/global"
     ],
     "typeRoots": [
       "./node_modules/@types/",
@@ -53,7 +53,9 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/**/*.d.ts",
-    "types/**/*.ts"
+    "types/**/*.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
   ],
   // 排除要编译的路径列表
   "exclude": [

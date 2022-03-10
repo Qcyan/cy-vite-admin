@@ -1,21 +1,17 @@
-import NProgress from 'nprogress'; // progress bar
-import 'nprogress/nprogress.css'; // progress bar style
-NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }); // NProgress Configuration
+import NProgress from 'nprogress' // progress bar
+import 'nprogress/nprogress.css' // progress bar style
+NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }) // NProgress Configuration
 
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { RoutesDataItem } from "@/utils/routes";
-
-import settings from "@/config/settings";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 // 路由
-import IndexLayoutRoutes from '@/router/indexLayout';
+import IndexLayoutRoutes from '@/router/indexLayout'
 
 // 组件
-import IndexLayout from '@/layouts/IndexLayout/index.vue';
-import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import IndexLayout from '@/layouts/IndexLayout/index.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
-
-const routes: RoutesDataItem[] = [
+const routes: RouteRecordRaw[] = [
     {
         title: 'empty',
         path: '/',
@@ -29,7 +25,7 @@ const routes: RoutesDataItem[] = [
                 children: IndexLayoutRoutes
             }
         ]
-    },
+    }
     // ...IndexLayoutRoutes
 ]
 const router = createRouter({
@@ -37,18 +33,17 @@ const router = createRouter({
         return { top: 0 }
     },
     history: createWebHashHistory(),
-    routes: routes,
-});
+    routes: routes
+})
 
 router.beforeEach((/* to, from */) => {
     // start progress bar
-    NProgress.start();
-});
+    NProgress.start()
+})
 
 router.afterEach(() => {
     // finish progress bar
-    NProgress.done();
-});
+    NProgress.done()
+})
 
-export default router;
-
+export default router

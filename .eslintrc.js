@@ -37,7 +37,12 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/consistent-type-imports': 'error',
-
+        'space-before-function-paren': 'off', // ts函数的前后空格
+        /*"space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "always",
+            "asyncArrow": "always"
+        }]*/
         /**
          * 这将使命中的变化历史变得更清晰
          */

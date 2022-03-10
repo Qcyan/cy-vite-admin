@@ -83,7 +83,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-::v-deep .ant-menu-item {
+:deep(.ant-menu-item) {
     margin: 0 !important;
 }
 </style>
