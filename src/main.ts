@@ -3,8 +3,8 @@ import App from '@/App.vue'
 import router from '@/router/index'
 import { createPinia, storeToRefs } from 'pinia'
 import piniaPluginPersist from 'pinia-plugin-persist'
-// import ElementPlus from 'element-plus';
-// import 'element-plus/dist/index.css';
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import Antd from 'ant-design-vue'
 if (typeof (window as any).global === 'undefined') {
     (window as any).global = window;
@@ -23,5 +23,5 @@ const app = createApp(App)
 app.use(Antd)
 app.use(pinia)
 app.use(router)
-// app.use(ElementPlus);
+app.use(ElementPlus);
 app.mount('#app')
