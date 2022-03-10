@@ -1,8 +1,8 @@
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { ElNotification, ElMessage } from 'element-plus'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 NProgress.configure({ showSpinner: false, easing: 'ease', speed: 1000 }) // NProgress Configuration
-
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 // 路由
 import IndexLayoutRoutes from '@/router/indexLayout'
@@ -36,9 +36,30 @@ const router = createRouter({
     routes: routes
 })
 
-router.beforeEach((/* to, from */) => {
+router.beforeEach((to, from, next) => {
     // start progress bar
     NProgress.start()
+
+    // 设置浏览器标题
+    if (to.meta.title) {
+        document.title = String(to.meta.title)
+    } else {
+        document.title = 'cyan平台'
+    }
+
+    // 路由出错处理
+    if (to.matched.length === 0 && !to.name) {
+        ElNotification({
+            title: 'Error',
+            message: 'This is an error message',
+            type: 'error',
+            duration: 5000
+        })
+        ElMessage.error('404')
+        router.push('/404')
+    }
+
+    next()
 })
 
 router.afterEach(() => {

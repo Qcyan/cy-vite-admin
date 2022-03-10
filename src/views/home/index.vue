@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
-import { useAccountStore } from '@/store2/modules/test'
+import useAccountStore from '@/store2/modules/test'
 
-const routesStore = useAccountStore()
-const tokens = computed(() => routesStore.token)
-console.log(tokens, 'tokenstokens')
+// const routesStore = useAccountStore()
+// const tokens = computed(() => routesStore.token)
+
+const token = storeToRefs(useAccountStore()).token
+
+console.log(token, 'tokenstokens')
 </script>
 
 <template>

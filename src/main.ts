@@ -1,23 +1,27 @@
 import { createApp } from 'vue'
-
-// 引入 Antd
-import Antd from 'ant-design-vue'
-
-// 导入 svg
-import { importAllSvg } from '@/components/IconSvg/index'
-
-importAllSvg()
-
 import App from '@/App.vue'
 import router from '@/router/index'
-// import store from '@/store'
-import {store} from '@/store2'
+import { createPinia, storeToRefs } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
+// import ElementPlus from 'element-plus';
+// import 'element-plus/dist/index.css';
+import Antd from 'ant-design-vue'
+if (typeof (window as any).global === 'undefined') {
+    (window as any).global = window;
+}
 
-import {useAccountStore} from '@/store2/modules/test'
-const accountStore = useAccountStore(store)
+// 组件
+import { importAllSvg } from '@/components/IconSvg/index'
+importAllSvg()
+
+// import store from '@/store'
+// import { store } from '@/store2'
+const pinia = createPinia()
+pinia.use(piniaPluginPersist)
 
 const app = createApp(App)
 app.use(Antd)
-app.use(store)
+app.use(pinia)
 app.use(router)
+// app.use(ElementPlus);
 app.mount('#app')
