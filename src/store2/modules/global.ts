@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { StoreModuleType } from '@/utils/store'
 import { TabNavItem } from '@/utils/routes'
 import settings from '@/config/settings'
 import router from '@/router/index'

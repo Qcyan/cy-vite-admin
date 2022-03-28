@@ -17,7 +17,6 @@
                 :belongTopMenu="belongTopMenu"
                 :routeItem="routeItem"
             ></right-top>
-
             <div class="indexlayout-right-main">
                 <router-view></router-view>
             </div>
@@ -50,6 +49,8 @@ import {
     getSelectLeftMenuPath,
     formatRoutePathTheParents
 } from '@/utils/routes'
+import { useGlobalStore } from '@/store2/modules/global'
+
 import { mergeUnique as ArrayMergeUnique } from '@/utils/array'
 import settings from '@/config/settings'
 import useTitle from '@/composables/useTitle'
@@ -58,9 +59,6 @@ import IndexLayoutRoutes from '@/router/indexLayout'
 
 import Left from '@/layouts/IndexLayout/components/Left.vue'
 import RightTop from '@/layouts/IndexLayout/components/RightTop.vue'
-
-import { StateType as GlobalStateType } from '@/store/global'
-import { StateType as UserStateType } from "@/store/user";
 
 interface IndexLayoutSetupData {
     collapsed: ComputedRef<boolean>
@@ -80,10 +78,8 @@ export default defineComponent({
         RightTop
     },
     setup(): IndexLayoutSetupData {
-        const store = useStore<{
-            global: GlobalStateType
-            // user: UserStateType;
-        }>()
+        const globalStore = useGlobalStore()
+
         // console.log(store.state,'storestore')
         const config = reactive(settings)
         const route = useRoute()
@@ -112,12 +108,11 @@ export default defineComponent({
         )
 
         // 收缩左侧
-        // const collapsed = computed<boolean>(() => store.state.global.collapsed)
+        // const collapsed = computed<boolean>(() => globalStore.collapsed)
         const collapsed = false
 
-
         const toggleCollapsed = (): void => {
-            store.commit('global/changeLayoutCollapsed', !collapsed.value)
+            globalStore.changeLayoutCollapsed(!collapsed.value)
         }
 
         // 左侧菜单展开收起

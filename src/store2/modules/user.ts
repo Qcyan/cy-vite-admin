@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { StoreModuleType } from '@/utils/store'
 import { ResponseData } from '@/axios/index'
 import { queryCurrent, queryMessage } from '@/api/user'
 import { removeToken } from '@/utils/localToken'
