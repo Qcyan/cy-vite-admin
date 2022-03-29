@@ -50,6 +50,8 @@ import {
     getSelectLeftMenuPath,
     formatRoutePathTheParents
 } from '@/utils/routes'
+import { useGlobalStore } from '@/store/modules/global'
+
 import { mergeUnique as ArrayMergeUnique } from '@/utils/array'
 import settings from '@/config/settings'
 import useTitle from '@/composables/useTitle'
@@ -59,14 +61,11 @@ import IndexLayoutRoutes from '@/router/indexLayout'
 import Left from '@/layouts/IndexLayout/components/Left.vue'
 import RightTop from '@/layouts/IndexLayout/components/RightTop.vue'
 
-import { StateType as GlobalStateType } from '@/store/global'
-import { StateType as UserStateType } from "@/store/user";
-
 interface IndexLayoutSetupData {
     collapsed: ComputedRef<boolean>
     permissionMenuData: ComputedRef<RoutesDataItem[]>
     belongTopMenu: ComputedRef<string>
-    selectedKeys: ComputedRef<string[]>
+    selectedKeys: ComputedRef<string>
     leftOpenKeys: Ref<string[]>
     routeItem: ComputedRef<RoutesDataItem>
     onOpenChange: (key: any) => void
@@ -80,11 +79,10 @@ export default defineComponent({
         RightTop
     },
     setup(): IndexLayoutSetupData {
-        const store = useStore<{
-            global: GlobalStateType
-            // user: UserStateType;
-        }>()
-        // console.log(store.state,'storestore')
+        const globalStore = useGlobalStore()
+
+        console.log(globalStore, 'globalStore')
+
         const config = reactive(settings)
         const route = useRoute()
 
@@ -101,9 +99,9 @@ export default defineComponent({
         const belongTopMenu = computed<string>(() => getRouteBelongTopMenu(routeItem.value))
 
         // 左侧选择菜单key
-        const selectedKeys = computed<string[]>(() => {
+        const selectedKeys = computed<string>(() => {
             const selectedKey = getSelectLeftMenuPath(routeItem.value)
-            return [selectedKey]
+            return selectedKey
         })
 
         // 当前路由的父路由path[]
@@ -112,12 +110,11 @@ export default defineComponent({
         )
 
         // 收缩左侧
-        // const collapsed = computed<boolean>(() => store.state.global.collapsed)
-        const collapsed = false
-
+        const collapsed = computed<boolean>(() => globalStore.collapsed)
+        // const collapsed = false
 
         const toggleCollapsed = (): void => {
-            store.commit('global/changeLayoutCollapsed', !collapsed.value)
+            globalStore.changeLayoutCollapsed(!collapsed.value)
         }
 
         // 左侧菜单展开收起

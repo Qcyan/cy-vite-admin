@@ -1,15 +1,11 @@
 <template>
-    <a-menu
+    <el-menu
         theme="light"
-        mode="inline"
-        :inline-collapsed="collapsed"
-        :selectedKeys="selectedKeys"
-        :openKeys="openKeys"
-        @openChange="
-            key => {
-                openChange(key)
-            }
-        "
+        mode="vertical"
+        :collapse="false"
+        :collapse-transition="false"
+        :default-active="selectedKeys"
+        :unique-opened="false"
     >
         <sider-menu-item
             v-for="item in newMenuData"
@@ -18,7 +14,7 @@
             :topNavEnable="topNavEnable"
             :belongTopMenu="belongTopMenu"
         ></sider-menu-item>
-    </a-menu>
+    </el-menu>
 </template>
 <script lang="ts">
 import { computed, ComputedRef, defineComponent, PropType, toRefs } from 'vue'
@@ -46,10 +42,8 @@ export default defineComponent({
             default: ''
         },
         selectedKeys: {
-            type: Array as PropType<string[]>,
-            default: () => {
-                return []
-            }
+            type: String,
+            default: ''
         },
         openKeys: {
             type: Array as PropType<string[]>,
@@ -86,7 +80,6 @@ export default defineComponent({
             }
             return MenuItems
         })
-        console.log(newMenuData, 6666)
         const openChange = (key: string): void => {
             props.onOpenChange && props.onOpenChange(key)
         }

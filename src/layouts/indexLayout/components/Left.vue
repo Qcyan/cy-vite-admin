@@ -56,10 +56,8 @@ export default defineComponent({
             default: ''
         },
         selectedKeys: {
-            type: Array as PropType<string[]>,
-            default: () => {
-                return []
-            }
+            type: String,
+            default: ''
         },
         openKeys: {
             type: Array as PropType<string[]>,

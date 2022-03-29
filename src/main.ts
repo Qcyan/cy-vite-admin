@@ -1,27 +1,27 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
-import router from '@/router/index'
-import { createPinia, storeToRefs } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import Antd from 'ant-design-vue'
+
+import router from './router/'
+import { setupStore } from './store/'
+
+import { setupElementPlus } from './plugins/element-plus'
+
+// import Antd from 'ant-design-vue'
+// import 'ant-design-vue/dist/antd.css'
 
 if (typeof (window as any).global === 'undefined') {
     ;(window as any).global = window
 }
 
-// 组件
-import { importAllSvg } from '@/components/IconSvg/index'
-importAllSvg()
-
-import { pinia } from '@/store2'
-// const pinia = createPinia()
-pinia.use(piniaPluginPersist)
-
 const app = createApp(App)
-app.use(Antd)
-app.use(pinia)
+
+// 配置store
+setupStore(app)
+// 使用element-plus插件
+setupElementPlus(app)
+
+// app.use(Antd)
 app.use(router)
-app.use(ElementPlus)
-app.mount('#app')
+
+// 路由准备完毕再挂载
+router.isReady().then(() => app.mount('#app'))

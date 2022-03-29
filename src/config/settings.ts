@@ -1,4 +1,4 @@
-import { RoutesDataItem } from "@/utils/routes";
+import { RoutesDataItem } from '@/utils/routes'
 
 /**
  * 站点配置
@@ -8,67 +8,67 @@ export interface SettingsType {
     /**
      * 站点名称
      */
-    siteTitle: string;
+    siteTitle: string
 
     /**
      * 顶部菜单开启
      */
-    topNavEnable: boolean;
+    topNavEnable: boolean
 
     /**
      * 头部固定开启
      */
-    headFixed: boolean;
+    headFixed: boolean
 
     /**
      * tab菜单开启
      */
-    tabNavEnable: boolean;
+    tabNavEnable: boolean
 
     /**
      * 站点首页路由
      */
-    homeRouteItem: RoutesDataItem;
+    homeRouteItem: RoutesDataItem
 
     /**
      * 站点本地存储Token 的 Key值
      */
-    siteTokenKey: string;
+    siteTokenKey: string
 
     /**
      * Ajax请求头发送Token 的 Key值
      */
-    ajaxHeadersTokenKey: string;
+    ajaxHeadersTokenKey: string
 
     /**
      * Ajax返回值不参加统一验证的api地址
      */
-    ajaxResponseNoVerifyUrl: string[];
+    ajaxResponseNoVerifyUrl: string[]
 
     /**
      * iconfont.cn 项目在线生成的 js 地址
      */
-    iconfontUrl: string[];
+    iconfontUrl: string[]
 
     /**
      * 侧边栏标题
      */
-    silderTitle: string;
+    silderTitle: string
 
     /**
      * 是否显示消息
      */
-    isShowMessage: boolean;
+    isShowMessage: boolean
 
     /**
      * 是否显示多语言
      */
-    isShowSelectLang: boolean;
+    isShowSelectLang: boolean
 
     /**
      * 是否显示右边配置菜单
      */
-    isShowSysConfig: boolean,
+    isShowSysConfig: boolean
 
     /**
      * 系统logo
@@ -78,8 +78,8 @@ export interface SettingsType {
 }
 
 const settings: SettingsType = {
-    // systemLogo: require('@/assets/images/logo.png'),
-    systemLogo: null,
+    systemLogo: import('@/assets/images/logo.png'),
+    // systemLogo: null,
     siteTitle: '易掌柜打单',
     silderTitle: '易掌柜打单',
     isShowMessage: false,
@@ -98,9 +98,9 @@ const settings: SettingsType = {
     ajaxHeadersTokenKey: 'x-token',
     ajaxResponseNoVerifyUrl: [
         '/user/login', // 用户登录
-        '/user/info', // 获取用户信息
+        '/user/info' // 获取用户信息
     ],
-    iconfontUrl: [],
-};
+    iconfontUrl: []
+}
 
-export default settings;
+export default settings

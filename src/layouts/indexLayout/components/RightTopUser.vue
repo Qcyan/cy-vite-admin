@@ -1,53 +1,49 @@
 <template>
-    <a-dropdown>
+    <el-dropdown>
         <div class="user-info">
-            <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+            <el-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
             <a class="indexlayout-top-usermenu ant-dropdown-link" @click="e => e.preventDefault()">
-                <!--                {{ currentUser.name }}-->
+                {{ currentUser.name }}
                 <DownOutlined />
             </a>
         </div>
         <template #overlay>
-            <a-menu @click="onMenuClick">
-                <a-menu-item key="userinfo">
+            <el-dropdown-menu @click="onMenuClick">
+                <el-dropdown-item key="userinfo">
                     {{ t('index-layout.topmenu.userinfo') }}
-                </a-menu-item>
-                <a-menu-item key="logout">
+                </el-dropdown-item>
+                <el-dropdown-item key="logout">
                     {{ t('index-layout.topmenu.logout') }}
-                </a-menu-item>
-            </a-menu>
+                </el-dropdown-item>
+            </el-dropdown-menu>
         </template>
-    </a-dropdown>
+    </el-dropdown>
 </template>
 <script lang="ts">
 import { DownOutlined } from '@ant-design/icons-vue'
 import { computed, ComputedRef, defineComponent } from 'vue'
-import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { StateType as UserStateType, CurrentUser } from '@/store/user'
-interface RightTopUserSetupData {
-    currentUser: ComputedRef<CurrentUser>
-    onMenuClick: (event: any) => Promise<void>
-}
+import { useUserStore } from '@/store/modules/user.ts'
+
 export default defineComponent({
     name: 'RightTopUser',
     components: {
         DownOutlined
     },
-    setup(): RightTopUserSetupData {
-        const store = useStore<{ user: UserStateType }>()
+    setup() {
+        const userStore = useUserStore()
         const router = useRouter()
 
         // 获取当前登录用户信息
-        // const currentUser = computed<CurrentUser>(() => store.state.user.currentUser)
-        const currentUser = false
+        const currentUser = computed(() => useUserStore.currentUser)
+        // const currentUser = false
 
         // 点击菜单
         const onMenuClick = async (event: any) => {
             const { key } = event
 
             if (key === 'logout') {
-                const res: boolean = await store.dispatch('user/logout')
+                const res: boolean = await userStore.logout()
                 if (res === true) {
                     router.replace({
                         path: '/user/login',

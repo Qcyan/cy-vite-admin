@@ -1,18 +1,16 @@
-/**
- * Store 入口
- */
-import { createStore } from 'vuex'
-import { importAllStore } from '@/utils/store'
-import VuexPersistence from 'vuex-persist'
+import type { App } from 'vue'
+import { createPinia, storeToRefs } from 'pinia'
+import piniaPluginPersist from 'pinia-plugin-persist'
 
-/*
-const vuexLocal = new VuexPersistence({
-    storage: window.localStorage,
-    modules: ['global']
-})
-*/
-export default createStore({
-    modules: importAllStore(),
-    getters: {},
-    // plugins: [vuexLocal.plugin]
-})
+const store = createPinia()
+
+store.use(piniaPluginPersist)
+
+export function setupStore(app: App<Element>) {
+    app.use(store)
+}
+
+// 传递一个返回函数,给所有store添加一个静态属性
+// pinia.use(() => ({ env: 'dev' }))
+
+export { store }

@@ -49,7 +49,7 @@ import {
     getSelectLeftMenuPath,
     formatRoutePathTheParents
 } from '@/utils/routes'
-import { useGlobalStore } from '@/store2/modules/global'
+import { useGlobalStore } from '@/store/modules/global'
 
 import { mergeUnique as ArrayMergeUnique } from '@/utils/array'
 import settings from '@/config/settings'
@@ -64,7 +64,7 @@ interface IndexLayoutSetupData {
     collapsed: ComputedRef<boolean>
     permissionMenuData: ComputedRef<RoutesDataItem[]>
     belongTopMenu: ComputedRef<string>
-    selectedKeys: ComputedRef<string[]>
+    selectedKeys: ComputedRef<string>
     leftOpenKeys: Ref<string[]>
     routeItem: ComputedRef<RoutesDataItem>
     onOpenChange: (key: any) => void
@@ -97,7 +97,7 @@ export default defineComponent({
         const belongTopMenu = computed<string>(() => getRouteBelongTopMenu(routeItem.value))
 
         // 左侧选择菜单key
-        const selectedKeys = computed<string[]>(() => {
+        const selectedKeys = computed<string>(() => {
             const selectedKey = getSelectLeftMenuPath(routeItem.value)
             return [selectedKey]
         })

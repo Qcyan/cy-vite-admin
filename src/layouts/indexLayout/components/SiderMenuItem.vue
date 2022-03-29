@@ -3,10 +3,10 @@
         <template
             v-if="item.children && Array.isArray(item.children) && hasChildRoute(item.children)"
         >
-            <a-sub-menu :key="item.path">
+            <el-sub-menu :index="item.path">
                 <template #title>
                     <span>
-                        <Icon v-if="item.icon" :type="item.icon" class="anticon" />
+                        <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
                         <span>{{ item.title }}</span>
                     </span>
                 </template>
@@ -16,16 +16,17 @@
                     :routeItem="item2"
                     :topNavEnable="topNavEnable"
                     :belongTopMenu="belongTopMenu"
+                    style="display: block"
                 ></sider-menu-item>
-            </a-sub-menu>
+            </el-sub-menu>
         </template>
         <template v-else>
-            <a-menu-item :key="item.path">
-                <a-link :to="item.path">
-                    <Icon v-if="item.icon" :type="item.icon" class="anticon" />
+            <el-menu-item :key="item.path">
+                <el-link :to="item.path">
+                    <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
                     <span>{{ item.title }}</span>
-                </a-link>
-            </a-menu-item>
+                </el-link>
+            </el-menu-item>
         </template>
     </template>
 </template>
@@ -38,7 +39,7 @@ import {
     hasChildRoute
 } from '@/utils/routes'
 import ALink from '@/components/ALink/index.vue'
-import Icon from './Icon.vue'
+// import Icon from './Icon.vue'
 
 interface SiderMenuItemSetupData {
     item: Ref
@@ -63,7 +64,7 @@ export default defineComponent({
         }
     },
     components: {
-        Icon,
+        // Icon,
         ALink
     },
     setup(props): SiderMenuItemSetupData {

@@ -24,7 +24,7 @@ import { DownOutlined } from '@ant-design/icons-vue'
 import { computed, ComputedRef, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/store2/modules/user.ts'
+import { useUserStore } from '@/store/modules/user.ts'
 
 export default defineComponent({
     name: 'RightTopUser',
