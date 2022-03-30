@@ -3,10 +3,18 @@
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
 declare module 'vue' {
-  export interface GlobalComponents {
-    ALink: typeof import('./src/components/ALink/index.vue')['default']
-    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-  }
+    export interface GlobalComponents {
+        ALink: typeof import('./src/components/ALink/index.vue')['default']
+        ElAvatar: typeof import('element-plus/es')['ElAvatar']
+        ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+        ElDropdown: typeof import('element-plus/es')['ElDropdown']
+        ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+        ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+        ElLink: typeof import('element-plus/es')['ElLink']
+        ElMenu: typeof import('element-plus/es')['ElMenu']
+        ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+        ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    }
 }
 
-export { }
+export {}

@@ -35,8 +35,7 @@ export default defineComponent({
         const router = useRouter()
 
         // 获取当前登录用户信息
-        const currentUser = computed(() => useUserStore.currentUser)
-        // const currentUser = false
+        const currentUser = computed(() => userStore.currentUser)
 
         // 点击菜单
         const onMenuClick = async (event: any) => {

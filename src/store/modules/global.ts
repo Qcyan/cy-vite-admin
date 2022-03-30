@@ -33,8 +33,7 @@ const initState: StateType = {
     ]
 }
 
-export const useGlobalStore = defineStore({
-    id: 'store-global',
+export const useGlobalStore = defineStore('store-global', {
     state: () => initState,
     actions: {
         changeLayoutCollapsed(payload) {

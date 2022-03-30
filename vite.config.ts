@@ -12,10 +12,13 @@ const CWD = process.cwd()
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv): UserConfig => {
     // 环境变量
-    const { VITE_BASE_URL } = loadEnv(mode, CWD)
+    // const { VITE_BASE_URL } = loadEnv(mode, CWD)
 
     return {
-        base: VITE_BASE_URL, // 设置打包路径
+        // base: VITE_BASE_URL, // 设置打包路径
+        /*server: {
+            host: '0.0.0.0'
+        },*/
         css: {
             modules: {
                 localsConvention: 'camelCase' // 默认只支持驼峰，修改为同时支持横线和驼峰
@@ -33,26 +36,26 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         plugins: [
             vue(),
             vueJsx(),
-            legacy({
-                targets: ['defaults', 'not IE 11']
-            }),
+            // legacy({
+            //     targets: ['defaults', 'not IE 11']
+            // }),
             AutoImport({
-                include: [
-                    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-                    /\.vue$/,
-                    /\.vue\?vue/, // .vue
-                    /\.md$/ // .md
-                ],
-                dts: true, // 配置文件生成位置 src/auto-import.d.ts
-                imports: ['vue', 'vue-router'] // 自动引入vue API以及组件
+                //     include: [
+                //         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                //         /\.vue$/,
+                //         /\.vue\?vue/, // .vue
+                //         /\.md$/ // .md
+                //     ],
+                //     dts: true, // 配置文件生成位置 src/auto-import.d.ts
+                //     imports: ['vue', 'vue-router'] // 自动引入vue API以及组件
                 // resolvers: [ElementPlusResolver()]
             }),
-            // 项目组件库按需引入。目录下的所有会自动注册为组件，直接使用即可
+            // // 项目组件库按需引入。目录下的所有会自动注册为组件，直接使用即可
             Components({
                 // dirs: ["src/components"], // 要导入组件的目录的相对路径，引入目录下组件时直接引入
                 // deep: true, // 搜索子目录
-                dts: true, // 配置文件生成位置 src/components.d.ts
-                resolvers: [ElementPlusResolver()] // 内置Resolver可以按需导入很多组件库
+                // dts: true, // 配置文件生成位置 src/components.d.ts
+                // resolvers: [ElementPlusResolver()] // 内置Resolver可以按需导入很多组件库
             })
         ],
         resolve: {
@@ -102,9 +105,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             }
         },
         // 在预构建中强制排除的依赖项
-        optimizeDeps: {
-            include: ['@vueuse/core', 'element-plus', 'lodash-es', 'vuedraggable']
-        },
+        // optimizeDeps: {
+        //     include: ['@vueuse/core', 'element-plus', 'lodash-es', 'vuedraggable']
+        // },
         server: {
             port: 8888, // 设置服务启动端口号
             open: true, // 设置服务启动时是否自动打开浏览器

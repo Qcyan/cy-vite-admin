@@ -17,15 +17,14 @@ export interface StateType {
 const initState: StateType = {
     currentUser: {
         id: 0,
-        name: '',
+        name: 'xxx',
         avatar: '',
         roles: []
     },
     message: 0
 }
 
-export const useUserStore = defineStore({
-    id: 'store-user',
+export const useUserStore = defineStore('store-user', {
     state: () => initState,
     actions: {
         saveCurrentUser(payload) {
