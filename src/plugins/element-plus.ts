@@ -1,5 +1,7 @@
-import { App, Component } from 'vue';
-import 'element-plus/dist/index.css';
+import { App, Component } from 'vue'
+import 'element-plus/dist/index.css'
+
+import { Cellphone, Avatar, DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 
 import {
     ElAffix,
@@ -33,8 +35,10 @@ import {
     ElAlert,
     ElRadioButton,
     ElRadioGroup,
-    ElInfiniteScroll,
-} from 'element-plus';
+    ElInfiniteScroll
+} from 'element-plus'
+
+const iconComponents = [Cellphone, Avatar, DArrowLeft, DArrowRight]
 
 const components = [
     ElAffix,
@@ -66,16 +70,19 @@ const components = [
     ElPagination,
     ElAlert,
     ElRadioButton,
-    ElRadioGroup,
-];
+    ElRadioGroup
+]
 
-const plugins = [ElLoading, ElInfiniteScroll];
+const plugins = [ElLoading, ElInfiniteScroll]
 
 export function setupElementPlus(app: App) {
     components.forEach((component: Component) => {
-        app.component(component.name!, component);
-    });
-    plugins.forEach((plugin) => {
-        app.use(plugin);
-    });
+        app.component(component.name!, component)
+    })
+    for (const iconName of iconComponents) {
+        app.component(iconName.name, iconName)
+    }
+    plugins.forEach(plugin => {
+        app.use(plugin)
+    })
 }

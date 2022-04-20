@@ -36,8 +36,8 @@ const initState: StateType = {
 export const useGlobalStore = defineStore('store-global', {
     state: () => initState,
     actions: {
-        changeLayoutCollapsed(payload) {
-            this.collapsed = payload
+        changeLayoutCollapsed(value) {
+            this.collapsed = value
         },
         setTopNavEnable(payload) {
             this.topNavEnable = payload

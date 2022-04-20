@@ -6,14 +6,16 @@
                 class="indexlayout-flexible"
                 @click="
                     () => {
-                        if (toggleCollapsed) {
-                            toggleCollapsed()
-                        }
+                        if (toggleCollapsed) toggleCollapsed()
                     }
                 "
             >
-                <MenuUnfoldOutlined v-if="collapsed" style="font-size: 16px" />
-                <MenuFoldOutlined v-else style="font-size: 16px" />
+                <el-icon color="#fff" class="no-inherit" size="16" v-if="collapsed">
+                    <DArrowLeft />
+                </el-icon>
+                <el-icon color="#fff" class="no-inherit" size="16" v-else>
+                    <DArrowRight />
+                </el-icon>
             </div>
 
             <!-- 顶部菜单 -->
@@ -34,12 +36,6 @@
             </div>
             <!-- 顶部右侧 -->
             <div class="indexlayout-top-menu-right">
-                <template v-if="isShowMessage">
-                    <!--          <right-top-message />-->
-                </template>
-                <template v-if="isShowSelectLang">
-                    <!--          <select-lang class="indexlayout-top-selectlang" />-->
-                </template>
                 <right-top-user />
             </div>
         </div>
@@ -47,7 +43,6 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, PropType, ref, Ref, toRefs, reactive } from 'vue'
-import { MenuFoldOutlined, MenuUnfoldOutlined, EnvironmentOutlined } from '@ant-design/icons-vue'
 import { RoutesDataItem } from '@/utils/routes'
 import useTopMenuWidth from '../composables/useTopMenuWidth'
 import settings, { SettingsType } from '@/config/settings'
@@ -64,26 +59,12 @@ export default defineComponent({
     name: 'RightTop',
     components: {
         ALink,
-        RightTopUser,
-        MenuFoldOutlined,
-        MenuUnfoldOutlined
+        RightTopUser
     },
     props: {
         collapsed: {
             type: Boolean,
             default: false
-        },
-        tabNavEnable: {
-            type: Boolean,
-            default: true
-        },
-        topNavEnable: {
-            type: Boolean,
-            default: true
-        },
-        belongTopMenu: {
-            type: String,
-            default: ''
         },
         toggleCollapsed: {
             type: Function as PropType<() => void>
@@ -94,20 +75,25 @@ export default defineComponent({
                 return []
             }
         },
+        belongTopMenu: {
+            type: String,
+            default: ''
+        },
         routeItem: {
             type: Object as PropType<RoutesDataItem>,
             required: true
         }
     },
     setup(props): RightTopSetupData {
-        const { topNavEnable } = toRefs(props)
-        const config = reactive(settings)
+        // const { topNavEnable } = toRefs(props)
+        // const config = reactive(settings)
+        let topNavEnable = ref(true) // 使用顶部菜单
         const { topMenuCon, topMenuWidth } = useTopMenuWidth(topNavEnable)
-
+        console.log(topMenuCon, topMenuWidth)
         return {
             topMenuCon,
-            topMenuWidth,
-            ...toRefs(config)
+            topMenuWidth
+            // ...toRefs(config)
         }
     }
 })

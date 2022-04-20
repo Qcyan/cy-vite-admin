@@ -17,7 +17,7 @@ export interface StateType {
 const initState: StateType = {
     currentUser: {
         id: 0,
-        name: 'xxx',
+        name: '无名氏',
         avatar: '',
         roles: []
     },

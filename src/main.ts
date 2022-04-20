@@ -4,13 +4,13 @@ import App from '@/App.vue'
 import router from './router/'
 import { setupStore } from './store/'
 
-import { setupElementPlus } from './plugins/element-plus'
 
 // import Antd from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import { setupElementPlus } from './plugins/element-plus'
 
 if (typeof (window as any).global === 'undefined') {
     ;(window as any).global = window
@@ -21,7 +21,7 @@ const app = createApp(App)
 // 配置store
 setupStore(app)
 // 使用element-plus插件
-// setupElementPlus(app)
+setupElementPlus(app)
 
 // app.use(Antd)
 app.use(router)

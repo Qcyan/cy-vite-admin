@@ -1,5 +1,8 @@
 <template>
     <div id="indexlayout">
+        <!-- 收缩状态，有权限的菜单，当前路由的顶部菜单，左侧选择菜单key ，左侧展开菜单keys -->
+        <!-- selectedKeys /other/index -->
+        <!--leftOpenKeys [ "/other" ]-->
         <left
             :collapsed="collapsed"
             :menuData="permissionMenuData"
@@ -10,6 +13,7 @@
         ></left>
 
         <div id="indexlayout-right" :class="{ 'fiexd-header': headFixed }">
+            <!-- 收缩状态，切换收缩，有权限的菜单，当前路由的顶部菜单，当前路由  -->
             <right-top
                 :collapsed="collapsed"
                 :toggleCollapsed="toggleCollapsed"
@@ -111,8 +115,6 @@ export default defineComponent({
 
         // 收缩左侧
         const collapsed = computed<boolean>(() => globalStore.collapsed)
-        // const collapsed = false
-
         const toggleCollapsed = (): void => {
             globalStore.changeLayoutCollapsed(!collapsed.value)
         }
