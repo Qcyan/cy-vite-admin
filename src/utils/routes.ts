@@ -66,9 +66,27 @@ export const vueRoutes = (
         if (item.children) {
             newItem.children = [...vueRoutes(itemChildren, newItem.path, headStart)]
         }
-
+console.log(newItem,'newItemnewItemnewItemnewItem')
         return newItem
     })
+}
+
+/**
+ * 根据 route.roles 判断当前用户是否有权限
+ * @param roles 用户的权限
+ * @param route 当前路由
+ */
+export const hasPermission = (roles: string[], route: RoutesDataItem): boolean => {
+    if (roles.includes('admin')) {
+        return true
+    }
+
+    if (route.roles) {
+        return route.roles.some(role => roles.includes(role))
+        //return roles.some(role => route.roles?.includes(role));
+    }
+
+    return true
 }
 
 /**
@@ -76,13 +94,21 @@ export const vueRoutes = (
  * @param roles 用户的权限
  * @param routes 框架对应路由
  */
-export const getPermissionMenuData = (routes: RoutesDataItem[]): RoutesDataItem[] => {
+export const getPermissionMenuData = (
+    roles: string[],
+    routes: RoutesDataItem[]
+): RoutesDataItem[] => {
     const menu: RoutesDataItem[] = []
     for (let index = 0, len = routes.length; index < len; index += 1) {
         const element = { ...routes[index] }
-
-        menu.push(element)
+        if (hasPermission(roles, element)) {
+            if (element.children) {
+                element.children = getPermissionMenuData(roles, element.children)
+            }
+            menu.push(element)
+        }
     }
+    console.log(menu,routes,66666666666666)
     return menu
 }
 

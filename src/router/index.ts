@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { ElNotification, ElMessage } from 'element-plus'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
@@ -26,13 +26,12 @@ const routes: RouteRecordRaw[] = [
             }
         ]
     }
-    // ...IndexLayoutRoutes
 ]
 const router = createRouter({
     scrollBehavior(/* to, from, savedPosition */) {
         return { top: 0 }
     },
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: routes
 })
 

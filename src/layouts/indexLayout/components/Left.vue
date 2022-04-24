@@ -5,20 +5,16 @@
             <router-link to="/" class="logo-url">
                 <template v-if="collapsed">
                     <img
-                        :alt="config.silderTitle"
-                        :src="config.systemLogo"
                         width="30"
-                        :title="config.silderTitle"
+                        src="https://img1.baidu.com/it/u=3063986801,2320543466&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=375"
                     />
                 </template>
                 <template v-else>
                     <img
-                        :alt="config.silderTitle"
-                        :src="config.systemLogo"
+                        src="https://img1.baidu.com/it/u=3063986801,2320543466&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=375"
                         width="30"
-                        :title="config.silderTitle"
                     />
-                    <h3 class="logo-title">{{ config.silderTitle }}</h3>
+                    <h3 class="logo-title">开发系统</h3>
                 </template>
             </router-link>
         </div>
@@ -29,6 +25,7 @@
                 :belongTopMenu="belongTopMenu"
                 :selectedKeys="selectedKeys"
                 :openKeys="openKeys"
+                :topNavEnable="topNavEnable"
             ></sider-menu>
         </div>
     </div>
@@ -47,9 +44,11 @@ export default defineComponent({
             type: Boolean,
             default: false
         },
-        topNavEnable: {
-            type: Boolean,
-            default: true
+        menuData: {
+            type: Array as PropType<RoutesDataItem[]>,
+            default: () => {
+                return []
+            }
         },
         belongTopMenu: {
             type: String,
@@ -68,12 +67,10 @@ export default defineComponent({
         onOpenChange: {
             type: Function as PropType<(key: any) => void>
         },
-        menuData: {
-            type: Array as PropType<RoutesDataItem[]>,
-            default: () => {
-                return []
-            }
-        }
+        topNavEnable: {
+            type: Boolean,
+            default: true,
+        },
     },
     components: {
         SiderMenu
