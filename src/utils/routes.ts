@@ -66,7 +66,6 @@ export const vueRoutes = (
         if (item.children) {
             newItem.children = [...vueRoutes(itemChildren, newItem.path, headStart)]
         }
-console.log(newItem,'newItemnewItemnewItemnewItem')
         return newItem
     })
 }
@@ -108,7 +107,6 @@ export const getPermissionMenuData = (
             menu.push(element)
         }
     }
-    console.log(menu,routes,66666666666666)
     return menu
 }
 

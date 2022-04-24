@@ -1,32 +1,35 @@
 <template>
     <template v-if="!item.hidden">
-        <template
-            v-if="item.children && Array.isArray(item.children) && hasChildRoute(item.children)"
-        >
-            <el-sub-menu :index="item.path">
-                <template #title>
-                    <span>
-                        <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
-                        <span>{{ item.title }}</span>
-                    </span>
-                </template>
-                <sider-menu-item
-                    v-for="item2 in item.children"
-                    :key="item2.path"
-                    :routeItem="item2"
-                    :topNavEnable="topNavEnable"
-                    :belongTopMenu="belongTopMenu"
-                    style="display: block"
-                ></sider-menu-item>
-            </el-sub-menu>
-        </template>
+        <template v-if="belongTopMenu !== topMenuPath && topNavEnable === true"></template>
         <template v-else>
-            <el-menu-item :key="item.path">
-                <el-link :to="item.path">
-                    <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
-                    <span>{{ item.title }}</span>
-                </el-link>
-            </el-menu-item>
+            <template
+                v-if="item.children && Array.isArray(item.children) && hasChildRoute(item.children)"
+            >
+                <el-sub-menu :index="item.path">
+                    <template #title>
+                        <span>
+                            <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
+                            <span>{{ item.title }}666</span>
+                        </span>
+                    </template>
+                    <sider-menu-item
+                        v-for="item2 in item.children"
+                        :key="item2.path"
+                        :routeItem="item2"
+                        :topNavEnable="topNavEnable"
+                        :belongTopMenu="belongTopMenu"
+                        style="display: block"
+                    ></sider-menu-item>
+                </el-sub-menu>
+            </template>
+            <template v-else>
+                <el-menu-item :key="item.path">
+                    <ElLink :to="item.path">
+                        <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
+                        <span>{{ item.title }}888</span>
+                    </ElLink>
+                </el-menu-item>
+            </template>
         </template>
     </template>
 </template>

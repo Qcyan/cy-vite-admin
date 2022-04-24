@@ -6,10 +6,25 @@
     </el-config-provider>
 </template>
 
-<script setup lang="ts">
-import { provide } from 'vue'
+<script  lang="ts">
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import { defineComponent, computed, onMounted } from 'vue'
+
+export default defineComponent({
+    name: 'App',
+    setup() {
+        // const { locale } = useI18n();
+        // const antdLocales = computed(()=> antdMessages[locale.value]);
+
+        onMounted(() => {
+            // setHtmlLang(locale.value);
+        })
+
+        return {
+            zhCn
+        }
+    }
+})
 </script>
 
-<style>
-</style>
+<style></style>

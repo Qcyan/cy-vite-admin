@@ -8,8 +8,8 @@ import { setupStore } from './store/'
 // import Antd from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
 import { setupElementPlus } from './plugins/element-plus'
 
 if (typeof (window as any).global === 'undefined') {
@@ -25,7 +25,7 @@ setupElementPlus(app)
 
 // app.use(Antd)
 app.use(router)
-app.use(ElementPlus)
+// app.use(ElementPlus)
 
 // 路由准备完毕再挂载
 router.isReady().then(() => app.mount('#app'))
