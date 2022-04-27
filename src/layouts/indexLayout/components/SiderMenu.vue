@@ -96,7 +96,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .ant-menu {
     height: 100%;
 }

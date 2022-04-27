@@ -1,3 +1,3 @@
 <template>
-  <div class="indexlayout-main-conent">其他nav分类</div>
+  <div class="indexlayout-main-conent">其他模块</div>
 </template>

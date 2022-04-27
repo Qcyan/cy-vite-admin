@@ -19,7 +19,7 @@ const initState: StateType = {
         id: 0,
         name: '无名氏',
         avatar: '',
-        roles: []
+        roles: ['admin']
     },
     message: 0
 }

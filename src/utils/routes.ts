@@ -71,46 +71,6 @@ export const vueRoutes = (
 }
 
 /**
- * 根据 route.roles 判断当前用户是否有权限
- * @param roles 用户的权限
- * @param route 当前路由
- */
-export const hasPermission = (roles: string[], route: RoutesDataItem): boolean => {
-    if (roles.includes('admin')) {
-        return true
-    }
-
-    if (route.roles) {
-        return route.roles.some(role => roles.includes(role))
-        //return roles.some(role => route.roles?.includes(role));
-    }
-
-    return true
-}
-
-/**
- * 根据用户权限 获取 对应权限菜单
- * @param roles 用户的权限
- * @param routes 框架对应路由
- */
-export const getPermissionMenuData = (
-    roles: string[],
-    routes: RoutesDataItem[]
-): RoutesDataItem[] => {
-    const menu: RoutesDataItem[] = []
-    for (let index = 0, len = routes.length; index < len; index += 1) {
-        const element = { ...routes[index] }
-        if (hasPermission(roles, element)) {
-            if (element.children) {
-                element.children = getPermissionMenuData(roles, element.children)
-            }
-            menu.push(element)
-        }
-    }
-    return menu
-}
-
-/**
  * 根据 hidden 判断是否有数据子集
  * @param children RoutesDataItem[]
  */
@@ -188,4 +148,87 @@ export const formatRoutePathTheParents = (pathname: string, separator = '/'): st
     }
 
     return arr
+}
+
+/**
+ * 根据 自定义传入权限名 判断当前用户是否有权限
+ * @param userRoles 用户的权限
+ * @param roles 自定义权限名
+ */
+export const hasPermissionRouteRoles = (
+    userRoles: string[],
+    roles?: string | string[]
+): boolean => {
+    if (userRoles.includes('admin')) return true
+    if (typeof roles === 'undefined') return true
+    if (typeof roles === 'string') return userRoles.includes(roles)
+    if (roles instanceof Array && roles.length > 0) {
+        return roles.some(role => userRoles.includes(role))
+    }
+    return false
+}
+
+/**
+ * 根据 route.roles 判断当前用户是否有权限
+ * @param roles 用户的权限
+ * @param route 当前路由
+ */
+export const hasPermission = (roles: string[], route: RoutesDataItem): boolean => {
+    if (roles.includes('admin')) return true
+    if (route.roles) {
+        return route.roles.some(role => roles.includes(role))
+        //return roles.some(role => route.roles?.includes(role));
+    }
+
+    return true
+}
+
+/**
+ * 根据用户权限 获取 对应权限菜单
+ * @param roles 用户的权限
+ * @param routes 框架对应路由
+ */
+export const getPermissionMenuData = (
+    roles: string[],
+    routes: RoutesDataItem[]
+): RoutesDataItem[] => {
+    const menu: RoutesDataItem[] = []
+    for (let index = 0, len = routes.length; index < len; index += 1) {
+        const element = { ...routes[index] }
+        if (hasPermission(roles, element)) {
+            if (element.children) {
+                element.children = getPermissionMenuData(roles, element.children)
+            }
+            menu.push(element)
+        }
+    }
+    console.log(menu, routes, roles,66666666666666)
+
+    return menu
+}
+
+/**
+ * 判断tabNav，对应的route是否相等
+ * @param route1 vue-route
+ * @param route2 vue-route
+ * @param type 判断规则
+ * @returns
+ */
+export const equalTabNavRoute = (
+    route1: RouteLocationNormalizedLoaded,
+    route2: RouteLocationNormalizedLoaded,
+    type: TabNavType = 'path'
+): boolean => {
+    let is = false
+    switch (type) {
+        case 'querypath': // path + query
+            is = equalObject(route1.query, route2.query) && route1.path === route2.path
+            break
+        default:
+            // path
+            is = route1.path === route2.path
+            break
+    }
+
+    return is
 }

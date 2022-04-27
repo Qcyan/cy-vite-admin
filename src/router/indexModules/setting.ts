@@ -9,7 +9,7 @@ const settingRouter: RoutesDataItem = {
     component: DefaultLayout,
     children: [
         {
-            title: '设置',
+            title: '个人信息',
             path: 'index',
             component: () => import('@/views/setting/index.vue'),
             children: []

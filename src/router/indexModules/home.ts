@@ -10,7 +10,7 @@ const homeRouter: RoutesDataItem = {
     children: [
         {
             icon: 'control',
-            title: '首页',
+            title: '主记录',
             path: 'index',
             component: () => import('@/views/home/index.vue'),
             children: []

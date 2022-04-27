@@ -1,24 +1,27 @@
-import { RoutesDataItem } from "@/utils/routes";
-import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import { RoutesDataItem } from '@/utils/routes'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const otherRouter: RoutesDataItem = {
     icon: 'other',
     title: '其他模块',
     path: '/other',
-    redirect: '/other/index',
+    redirect: '/other/maps/line',
     component: DefaultLayout,
     children: [
         {
-            title: '其他模块下1',
-            path: 'index',
+            title: '地图模块',
+            path: 'maps',
             // component: () => import('@/views/other/index.vue'),
+            redirect: '/other/maps/line',
             component: DefaultLayout, // 有children时
-            children: [{
-                title: '首页下1下1',
-                path: 'indexPath',
-                component: () => import('@/views/other/index.vue'),
-                children: []
-            }]
+            children: [
+                {
+                    title: '折线图',
+                    path: 'line',
+                    component: () => import('@/views/other/index.vue'),
+                    children: []
+                }
+            ]
         }
     ]
 }

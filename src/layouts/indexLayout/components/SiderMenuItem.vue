@@ -9,7 +9,7 @@
                     <template #title>
                         <span>
                             <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
-                            <span>{{ item.title }}666</span>
+                            <span>{{ item.title }}</span>
                         </span>
                     </template>
                     <sider-menu-item
@@ -26,7 +26,7 @@
                 <el-menu-item :key="item.path">
                     <ElLink :to="item.path">
                         <!--<Icon v-if="item.icon" :type="item.icon" class="anticon" />-->
-                        <span>{{ item.title }}888</span>
+                        <span>{{ item.title }}</span>
                     </ElLink>
                 </el-menu-item>
             </template>
@@ -86,7 +86,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 :deep(.ant-menu-item) {
     margin: 0 !important;
 }

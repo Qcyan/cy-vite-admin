@@ -1,7 +1,7 @@
 <template>
     <el-dropdown>
         <div class="user-info">
-            <el-avatar
+            <ElAvatar
                 src="https://img0.baidu.com/it/u=325674188,3280397254&fm=253&fmt=auto&app=138&f=JPEG?w=501&h=500"
             />
             <a class="indexlayout-top-usermenu" @click="e => e.preventDefault()">
@@ -50,7 +50,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .user-info {
     display: flex;
     align-items: center;

@@ -77,7 +77,6 @@ export default defineComponent({
     },
 
     setup(ctx, props) {
-        console.log(ctx, props)
         const config = ref<SettingsType>(settings)
         return {
             config
@@ -86,23 +85,23 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
-@import '../../../assets/css/global.less';
+<style lang="scss" scoped>
+@import '../../../assets/css/global.scss';
 #indexlayout-left {
     display: flex;
     flex-direction: column;
-    width: @leftSideBarWidth;
+    width: $leftSideBarWidth;
     height: 100vh;
-    background-color: @menu-dark-bg;
+    // background-color: @menu-dark-bg;
     color: #c0c4cc;
     transition-duration: 0.1s;
     .indexlayout-left-logo {
         width: 100%;
-        height: @headerHeight;
-        line-height: @headerHeight;
+        height: $headerHeight;
+        line-height: $headerHeight;
         text-align: center;
         vertical-align: middle;
-        /* background-color: $subMenuBg; */
+         background-color: $menu-dark-bg;
         .logo-url {
             display: inline-flex;
             width: 100%;
@@ -135,9 +134,9 @@ export default defineComponent({
     }
 
     &.narrow {
-        width: @menu-collapsed-width;
+        width: $menu-collapsed-width;
     }
 
-    .scrollbar();
+    /*.scrollbar();*/
 }
 </style>

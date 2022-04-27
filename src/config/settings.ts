@@ -80,8 +80,8 @@ export interface SettingsType {
 const settings: SettingsType = {
     systemLogo: import('@/assets/images/logo.png'),
     // systemLogo: null,
-    siteTitle: '易掌柜打单',
-    silderTitle: '易掌柜打单',
+    siteTitle: '上货助理',
+    silderTitle: '上货助理',
     isShowMessage: false,
     isShowSysConfig: false,
     isShowSelectLang: false,

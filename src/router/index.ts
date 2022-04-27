@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.title) {
         document.title = String(to.meta.title)
     } else {
-        document.title = 'cyan平台'
+        document.title = '正版上货'
     }
 
     // 路由出错处理

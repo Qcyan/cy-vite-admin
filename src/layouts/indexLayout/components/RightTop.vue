@@ -99,34 +99,34 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
-@import '../../../assets/css/global.less';
+<style lang="scss">
+@import '../../../assets/css/global.scss';
 #indexlayout-right-top {
     width: 100%;
-    height: (@headerHeight);
+    height: ($headerHeight);
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     z-index: 9;
     .indexlayout-right-top-top {
         display: flex;
         width: 100%;
-        height: @headerHeight;
-        background-color: @menu-dark-bg;
+        height: $headerHeight;
+        background-color: $menu-dark-bg;
         color: #c0c4cc;
         .indexlayout-flexible {
-            width: @headerHeight;
-            height: @headerHeight;
-            line-height: @headerHeight;
+            width: $headerHeight;
+            height: $headerHeight;
+            line-height: $headerHeight;
             text-align: center;
             cursor: pointer;
             &:hover {
-                background-color: @menu-dark-bg;
-                // color: @menu-dark-highlight-color;
+                background-color: $menu-dark-bg;
+                // color: $menu-dark-highlight-color;
             }
         }
 
         .indexlayout-top-menu {
-            height: @headerHeight;
-            line-height: @headerHeight;
+            height: $headerHeight;
+            line-height: $headerHeight;
             flex: 1;
             /* display: flex; */
             overflow: hidden;
@@ -134,21 +134,21 @@ export default defineComponent({
             .indexlayout-top-menu-li {
                 display: inline-block;
                 padding: 0 15px;
-                height: @headerHeight;
+                height: $headerHeight;
                 text-decoration: none;
                 color: #c0c4cc;
                 font-size: 15px;
                 border-bottom: solid 3px transparent;
                 &:hover,
                 &.active {
-                    background-color: @menu-dark-bg;
-                    // color: @menu-dark-highlight-color;
-                    border-bottom-color: @primary-color;
+                    background-color: $menu-dark-bg;
+                    // color: $menu-dark-highlight-color;
+                    border-bottom-color: $primary-color;
                 }
             }
 
             .breadcrumb {
-                line-height: @headerHeight;
+                line-height: $headerHeight;
             }
         }
 
@@ -159,8 +159,8 @@ export default defineComponent({
             justify-content: flex-end;
             padding-right: 10px;
             .indexlayout-top-message {
-                height: @headerHeight;
-                line-height: @headerHeight;
+                height: $headerHeight;
+                line-height: $headerHeight;
                 color: #c0c4cc;
                 .indexlayout-top-message-badge {
                     margin-left: 5px;
@@ -176,34 +176,34 @@ export default defineComponent({
             }
         }
 
-        .scrollbar();
+        //.scrollbar();
     }
 
     &.tabNavEnable {
-        height: (@headerHeight + @headerBreadcrumbHeight);
+        height: ($headerHeight + $headerBreadcrumbHeight);
     }
     &.topNavEnable {
-        height: (@headerHeight + @headerTabNavHeight);
+        height: ($headerHeight + $headerTabNavHeight);
         .indexlayout-right-top-top {
             background-color: #ffffff;
-            color: @text-color;
+            color: $text-color;
             .indexlayout-flexible {
                 &:hover {
-                    background-color: @mainBgColor;
-                    color: @heading-color;
+                    background-color: $mainBgColor;
+                    color: $heading-color;
                 }
             }
             .indexlayout-top-menu-right {
                 .indexlayout-top-message {
-                    color: @heading-color;
+                    color: $heading-color;
                 }
                 .indexlayout-top-usermenu {
-                    color: @heading-color;
+                    color: $heading-color;
                 }
             }
         }
         &.tabNavEnable {
-            height: (@headerHeight);
+            height: ($headerHeight);
         }
     }
 }

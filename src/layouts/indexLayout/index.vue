@@ -1,8 +1,6 @@
 <template>
     <div id="indexlayout">
         <!-- 收缩状态，有权限的菜单，当前路由的顶部菜单，左侧选择菜单key ，左侧展开菜单keys -->
-        <!-- selectedKeys /other/index -->
-        <!--leftOpenKeys [ "/other" ]-->
         <left
             :collapsed="collapsed"
             :menuData="permissionMenuData"
@@ -23,7 +21,9 @@
             ></right-top>
 
             <div class="indexlayout-right-main">
-                <router-view></router-view>
+                <permission :roles="routeItem.roles">
+                    <router-view></router-view>
+                </permission>
             </div>
         </div>
     </div>
@@ -55,6 +55,7 @@ import {
     formatRoutePathTheParents
 } from '@/utils/routes'
 import { useGlobalStore } from '@/store/modules/global'
+import { useUserStore } from '@/store/modules/user'
 
 import { mergeUnique as ArrayMergeUnique } from '@/utils/array'
 import settings from '@/config/settings'
@@ -84,6 +85,7 @@ export default defineComponent({
     },
     setup(): IndexLayoutSetupData {
         const globalStore = useGlobalStore()
+        const userStore = useUserStore()
 
         console.log(globalStore, 'globalStore')
 
@@ -98,13 +100,13 @@ export default defineComponent({
         // 有权限的菜单
         const permissionMenuData = computed<RoutesDataItem[]>(() => {
             // store.state.user.currentUser.roles
-            return getPermissionMenuData(['admin'],menuData)
+            return getPermissionMenuData(userStore.currentUser.roles, menuData)
         })
 
         // 当前路由的顶部菜单path
         const belongTopMenu = computed<string>(() => getRouteBelongTopMenu(routeItem.value))
 
-        // 左侧选择菜单key
+        // 左侧选择菜单key /other/index
         const selectedKeys = computed<string>(() => {
             const selectedKey = getSelectLeftMenuPath(routeItem.value)
             return selectedKey
@@ -126,7 +128,7 @@ export default defineComponent({
             leftOpenKeys.value = key
         }
 
-        // 左侧展开菜单keys
+        // 左侧展开菜单keys  /other
         const leftOpenKeys = ref<string[]>(routeParentPaths.value)
         watch([routeParentPaths, collapsed], () => {
             if (routeParentPaths.value.length && !collapsed.value) {
@@ -159,8 +161,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
-@import '../../assets/css/variables.less';
+<style lang="scss">
+@import '../../assets/css/variables.scss';
 #indexlayout {
     display: flex;
     height: 100vh;
@@ -170,7 +172,7 @@ export default defineComponent({
     position: relative;
     flex: 1;
     overflow: auto;
-    background-color: @mainBgColor;
+    background-color: $mainBgColor;
     &.fiexd-header {
         display: flex;
         flex-direction: column;

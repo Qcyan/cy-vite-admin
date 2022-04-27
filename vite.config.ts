@@ -27,9 +27,13 @@ export default ({ mode }: ConfigEnv): UserConfig => {
                 /*scss: {
                     charset: false,
                 },*/
-                less: {
+                /* less: {
                     charset: false,
-                    additionalData: '@import "./src/assets/css/global.less";'
+                    additionalData: '@import "./src/assets/css/global.less;'
+                },*/
+                scss: {
+                    charset: false,
+                    additionalData: '@import "./src/assets/css/global.scss";'
                 }
             }
         },
